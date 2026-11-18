@@ -1,4 +1,4 @@
-import { GithubOutlined, BugOutlined, EditOutlined, CompassOutlined, FileTextOutlined } from '@ant-design/icons';
+import { Code2, Bug, SquarePen, Compass, FileText } from 'lucide-react';
 
 export default function PageMeta({ route }) {
   const isComp = route.section === 'components';
@@ -12,14 +12,14 @@ export default function PageMeta({ route }) {
       )}
       <div>
         <span>Source</span>
-        <a href="#/components/all"><GithubOutlined /> Source</a>
-        <a href="#/components/changelog"><BugOutlined /> Changelog</a>
+        <a href="#/components/all"><Code2 size={14} /> Source</a>
+        <a href="#/components/changelog"><Bug size={14} /> Changelog</a>
       </div>
       <div>
         <span>Docs</span>
-        <a href="#/components/all"><EditOutlined /> Specimens</a>
-        {isComp && <a href="#/docs/getting-started"><CompassOutlined /> Docs</a>}
-        <a href="#/docs/spec/values"><FileTextOutlined /> Guidelines</a>
+        <a href="#/components/all"><SquarePen size={14} /> Specimens</a>
+        {isComp && <a href="#/docs/getting-started"><Compass size={14} /> Docs</a>}
+        <a href="#/docs/spec/values"><FileText size={14} /> Guidelines</a>
       </div>
     </div>
   );

@@ -11,9 +11,9 @@
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.1.0",
     "antd": "6.7.0",
     "dayjs": "^1.11.19",
+    "lucide-react": "^1.75.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

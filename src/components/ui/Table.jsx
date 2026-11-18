@@ -1,4 +1,5 @@
 import { Table as AntTable } from 'antd';
+import Button from './Button.jsx';
 
 /**
  * Branded Youlify/Eftson Table.
@@ -20,8 +21,7 @@ export default function Table({
 
   return (
     <div className={`eftson-table ${className}`.trim()}>
-      <AntTable
-        columns={columns}
+      <AntTable columns={columns}
         dataSource={rows}
         pagination={pagination}
         size={size}
@@ -29,7 +29,7 @@ export default function Table({
         showSorterTooltip={false}
         rowKey={rowKey || ((record) => record.key)}
         {...rest}
-      />
+ />
     </div>
   );
 }
@@ -57,8 +57,8 @@ export function SimpleTable({ headers, rows = [], className = '', columnProps = 
 
 export function TableActionButton({ children = 'View details', onClick }) {
   return (
-    <button type="button" className="table-action-btn" onClick={onClick}>
+    <Button tone="outline" size="small" onClick={onClick}>
       {children}
-    </button>
+    </Button>
   );
 }

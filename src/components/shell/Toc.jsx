@@ -21,9 +21,7 @@ export default function Toc({ type, tab = 'overview' }) {
           ? ['Templates']
           : type === 'playground'
             ? ['Playground', 'Preview', 'Controls']
-            : type === 'themes'
-              ? ['Themes', 'Preview', 'Tokens']
-              : type === 'getting-started'
+            : type === 'getting-started'
                 ? ['Quick start with AI', 'Install', 'Tokens', 'Next steps']
                 : type === 'landing'
                   ? []
@@ -41,8 +39,7 @@ export default function Toc({ type, tab = 'overview' }) {
       {sections.map((item, i) => {
         const id = toId(item);
         return (
-          <a
-            key={`${tab}-${item}`}
+          <a key={`${tab}-${item}`}
             className={i === 0 ? 'active' : ''}
             href={`#${id}`}
             onClick={(event) => scrollTo(event, id)}

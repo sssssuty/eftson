@@ -38,17 +38,16 @@ npm run build:web
 | `#/docs/getting-started` | AI-first docs getting started |
 | `#/components/overview` | Components browse landing |
 | `#/components/:slug` | Component detail (Usage → Anatomy → Best practices → Examples → States → Static measurements → API → Tokens) |
-| `#/themes` | Theme picker + live preview (Clinical, Connected, Care Green, Calm Stone, Night Shift) |
 | `#/templates` | Healthcare product templates |
 | `#/playground` | Local template playground |
 
-Top navigation: **Docs · Components · Templates · Themes · Playground**. The logo returns to the landing page.
+Top navigation: **Docs · Components · Templates · Playground**. The logo returns to the landing page.
 
 ## Source layout
 
 ```
 src/
-  data/           component, design, template, and theme catalogs
+  data/           component, design, and template catalogs
   lib/routing.js  hash routing helpers and default Eftson tokens
   components/
     shell/        header, sidebar, search, toc, app shell

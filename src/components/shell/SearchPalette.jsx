@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { SearchOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { Search, ArrowRight } from 'lucide-react';
 import { componentGroups } from '../../data/components.js';
 import { designGroups } from '../../data/design.js';
 import { routeForComponent, routeForDesign } from '../../lib/routing.js';
@@ -18,7 +18,6 @@ export default function SearchPalette({ open, close }) {
     { name: 'Home', group: 'Landing', href: '#/' },
     { name: 'Getting started', group: 'Docs', href: '#/docs/getting-started' },
     { name: 'All Components', group: 'Components · Overview', href: '#/components/all' },
-    { name: 'Themes', group: 'Resources', href: '#/themes' },
     { name: 'Templates', group: 'Resources', href: '#/templates' },
     { name: 'Playground', group: 'Resources', href: '#/playground' },
     ...componentGroups.flatMap((g) => g.items.map((name) => ({
@@ -39,21 +38,19 @@ export default function SearchPalette({ open, close }) {
 
   return (
     <div className="palette-backdrop" onMouseDown={close}>
-      <div
-        className="palette"
+      <div className="palette"
         role="dialog"
         aria-modal="true"
         aria-label="Search documentation"
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="palette-input">
-          <SearchOutlined />
-          <input
-            ref={inputRef}
+          <Search />
+          <input ref={inputRef}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search…"
-          />
+ />
           <kbd>ESC</kbd>
         </div>
         <div className="search-results">
@@ -63,7 +60,7 @@ export default function SearchPalette({ open, close }) {
                 {item.name}
                 <small>{item.group}</small>
               </span>
-              <ArrowRightOutlined />
+              <ArrowRight />
             </a>
           ))}
         </div>

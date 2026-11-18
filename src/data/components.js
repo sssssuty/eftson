@@ -1,21 +1,35 @@
 import { componentNav, flattenNavNames } from './componentNav.js';
 
-export { componentNav, flattenNavNames, navGroupForComponent } from './componentNav.js';
+export {
+  componentNav,
+  componentNavSections,
+  flattenNavNames,
+  filterNavSections,
+  navGroupForComponent,
+} from './componentNav.js';
 
 export const allComponents = flattenNavNames(componentNav);
 
 export const componentGroups = [
   {
+    title: 'Foundations',
+    items: ['Typography', 'Colors', 'Spacing', 'Corner', 'Shadow', 'Grid'],
+  },
+  {
     title: 'Inputs',
-    items: ['Chip', 'Date Picker', 'Filter Item', 'Input', 'Radio Selection', 'Slider', 'Toggle'],
+    items: ['Button', 'Chip', 'Date Picker', 'Filter Item', 'Icon', 'Input', 'Radio Selection', 'Slider', 'Toggle'],
   },
   {
     title: 'Data display',
     items: [
-      'Card', 'Data Grid', 'Data Grid Cell', 'Data Table', 'Data Table Cell',
-      'Data Visualization Axis', 'Display Form Text', 'Progress', 'Progress Indicator',
-      'Quick Info', 'Text Paragraph',
+      'Card', 'Data Grid', 'Data Grid Cell', 'Data Visualization Axis',
+      'Display Form Text', 'Progress', 'Progress Indicator', 'Quick Info',
+      'Table', 'Table Cell', 'Text Paragraph',
     ],
+  },
+  {
+    title: 'Data visualizations',
+    items: ['Bar Chart', 'Pie Chart', 'Line Chart', 'Area Chart'],
   },
   {
     title: 'Navigation',
@@ -27,19 +41,16 @@ export const componentGroups = [
   },
   {
     title: 'Patterns',
-    items: [
-      'Conversational AI', 'Form List', 'Form List Row & Section', 'Log In', 'Upload & Download',
-    ],
+    items: ['Form List', 'Form List Row & Section', 'Log In', 'Upload & Download'],
   },
 ];
 
 export const componentSlugs = {
-  'Conversational AI': 'conversational-ai',
   'Data Grid': 'data-grid',
   'Data Grid Cell': 'data-grid-cell',
-  'Data Table': 'data-table',
-  'Data Table Cell': 'data-table-cell',
   'Data Visualization Axis': 'data-visualization-axis',
+  Table: 'table',
+  'Table Cell': 'table-cell',
   'Date Picker': 'date-picker',
   'Display Form Text': 'display-form-text',
   'Dropdown Menu': 'dropdown-menu',
@@ -57,16 +68,24 @@ export const componentSlugs = {
   'Text Paragraph': 'text-paragraph',
   'Upload & Download': 'upload-download',
   'Warning Banner': 'warning-banner',
+  'Bar Chart': 'bar-chart',
+  'Pie Chart': 'pie-chart',
+  'Line Chart': 'line-chart',
+  'Area Chart': 'area-chart',
 };
 
 /** Old Ant Design / prior docs URLs → canonical Figma titles */
 export const slugRedirects = {
-  table: 'Data Table',
-  'table-cell': 'Data Table Cell',
-  'table-body': 'Data Table',
-  'table-header': 'Data Table Cell',
-  'table-header-cell': 'Data Table Cell',
-  'table-row': 'Data Table',
+  'data-table': 'Table',
+  'data-table-cell': 'Table Cell',
+  'table-body': 'Table',
+  'table-header': 'Table Cell',
+  'table-header-cell': 'Table Cell',
+  'table-row': 'Table',
+  'conversational-ai': 'Message',
+  font: 'Typography',
+  colour: 'Colors',
+  radius: 'Corner',
   dropdown: 'Dropdown Menu',
   'dropdown-menu': 'Dropdown Menu',
   'dropdown-menu-checkbox-item': 'Dropdown Menu',
@@ -93,18 +112,28 @@ export const slugRedirects = {
   tabs: 'Tabs',
   pagination: 'Pagination',
   message: 'Message',
-  button: 'Card',
+  button: 'Button',
 };
 
 export const componentDescriptions = {
+  Typography: 'Text styles can be applied in Figma using styles in the properties panel on the right.',
+  Colors: 'Root tokens are linked to the brand color palette.',
+  Spacing: "Spacing refers to the amount of empty or 'white space' between and around interface elements to create visual structure, improve readability, and enhance user interaction.",
+  Corner: 'Corner refers to border radius of rectangular shaped elements.',
+  Shadow: 'Drop shadow tokens for elevated surfaces. Small uses blur 10, Y 4, and #11265F at 10% opacity.',
+  Grid: '12-column product layout grid with consistent gutters.',
+  Button: 'Primary actions across solid, soft, text, and icon treatments with default, hover, pressed, and disabled states.',
   Card: 'Group related information and actions into a contained surface.',
   Chip: 'Compact label used to categorize, filter, or represent a selection.',
-  'Conversational AI': 'Chat and assistant surfaces for guided healthcare workflows.',
   'Data Grid': 'Dense spreadsheet-style grid for structured operational data.',
   'Data Grid Cell': 'Atomic cell variants used inside a data grid.',
-  'Data Table': 'Display rows of structured data with a branded header band and airy body.',
-  'Data Table Cell': 'Header and content cells for text, actions, status, and embedded controls.',
+  Table: 'Primary and secondary claim tables with selection, status cells, and expandable nested rows.',
+  'Table Cell': 'Header and content cells for text, actions, status, progress, and embedded controls.',
   'Data Visualization Axis': 'Axis labels and scale treatments for charts and analytics.',
+  'Bar Chart': 'Compare discrete values across categories with vertical bars.',
+  'Pie Chart': 'Show proportional parts of a whole.',
+  'Line Chart': 'Track trends over a continuous axis.',
+  'Area Chart': 'Emphasize magnitude over time with a filled line series.',
   'Date Picker': 'Choose a date or date range.',
   'Display Form Text': 'Read-only form field presentation for values and labels.',
   'Dropdown Menu': 'A menu revealed from a button or text trigger.',
@@ -113,9 +142,10 @@ export const componentDescriptions = {
   Footer: 'Page or app footer with secondary navigation and legal links.',
   'Form List': 'Stacked form sections for multi-field data entry.',
   'Form List Row & Section': 'Row and section building blocks inside a form list.',
+  Icon: 'The full Lucide icon set for product UI. Browse, search, and copy icon names.',
   Input: 'A basic text input control.',
   'Log In': 'Authentication screen pattern for signing into Youlify products.',
-  Message: 'Lightweight global feedback.',
+  Message: 'Lightweight global feedback for conversational and system responses.',
   Navigation: 'Primary navigation for moving across product areas.',
   'Navigation Profile': 'Profile menu and account affordances in the app chrome.',
   'Page Header': 'Title, actions, and context for a product page.',
@@ -135,16 +165,24 @@ export const componentDescriptions = {
 };
 
 export const wideSpecimens = new Set([
-  'Data Table',
+  'Table',
+  'Table Cell',
   'Data Grid',
   'Form List',
   'Form List Row & Section',
   'Filter Bar & Dropdown Menu',
   'Upload & Download',
-  'Conversational AI',
   'Log In',
   'Navigation',
   'Page Header',
+  'Icon',
+  'Button',
+  'Colors',
+  'Typography',
+  'Bar Chart',
+  'Pie Chart',
+  'Line Chart',
+  'Area Chart',
 ]);
 
 export function versionBadgeKind() {
@@ -153,8 +191,9 @@ export function versionBadgeKind() {
 
 export const anatomyParts = {
   default: ['Root', 'Label', 'Icon', 'Content', 'Affordance'],
-  'Data Table': ['Toolbar', 'Header', 'Row', 'Cell', 'Pagination'],
-  'Data Table Cell': ['Container', 'Content', 'Affordance'],
+  Button: ['Root', 'Leading icon', 'Label', 'Trailing icon'],
+  Table: ['Toolbar', 'Header', 'Row', 'Cell', 'Secondary row'],
+  'Table Cell': ['Container', 'Content', 'Affordance'],
   Input: ['Root', 'Prefix', 'Input field', 'Suffix', 'Clear'],
   'Dropdown Menu': ['Trigger', 'Menu', 'Item', 'Divider'],
   'Popup Window': ['Mask', 'Container', 'Header', 'Body', 'Footer'],
@@ -170,14 +209,20 @@ export const anatomyRows = {
     ['Content', 'Main interactive or display region.'],
     ['Affordance', 'Secondary cue such as a chevron, badge, or spinner.'],
   ],
-  'Data Table': [
-    ['Toolbar', 'Optional actions and filters above the grid.'],
-    ['Header', 'Column titles with gray band and vertical dividers.'],
-    ['Row', 'A single record across columns.'],
-    ['Cell', 'An individual value or control inside a row.'],
-    ['Pagination', 'Controls for paging through large datasets.'],
+  Button: [
+    ['Root', 'Clickable surface that receives focus, hover, pressed, and disabled states.'],
+    ['Leading icon', 'Optional Lucide icon before the label.'],
+    ['Label', 'Visible text describing the action; used as the accessible name.'],
+    ['Trailing icon', 'Optional Lucide icon after the label.'],
   ],
-  'Data Table Cell': [
+  Table: [
+    ['Toolbar', 'Optional selection summary and bulk actions above the grid.'],
+    ['Header', 'Column titles with gray band and vertical dividers.'],
+    ['Row', 'A single primary record across columns.'],
+    ['Cell', 'An individual value, status, or control inside a row.'],
+    ['Secondary row', 'Expandable nested table for line-item detail.'],
+  ],
+  'Table Cell': [
     ['Container', 'Cell frame with padding and optional background state.'],
     ['Content', 'Text, control, or status content rendered in the cell.'],
     ['Affordance', 'Sort chevron, checkbox, or trailing action.'],
@@ -248,6 +293,14 @@ export const componentMeasurements = {
     border: '1px solid token',
     font: 'Elza Medium 14/22',
   },
+  Button: {
+    height: '40px / 32px / 28px',
+    width: 'auto (min 64px)',
+    padding: '0 16px / 0 12px / 0 10px',
+    radius: '4px',
+    border: '1px solid transparent / soft fill',
+    font: 'Elza Medium 14/22',
+  },
   Input: {
     height: '40px',
     width: '100% (max content)',
@@ -272,7 +325,7 @@ export const componentMeasurements = {
     border: '1px solid transparent',
     font: 'Elza Medium 12/16',
   },
-  'Data Table Cell': {
+  'Table Cell': {
     height: '56px',
     width: 'auto',
     padding: '18px 16px',

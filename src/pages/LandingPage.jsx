@@ -1,34 +1,32 @@
 import * as Antd from 'antd';
-import {
-  ArrowRightOutlined, AppstoreOutlined, BgColorsOutlined,
-  LayoutOutlined, ThunderboltOutlined, BulbOutlined,
-} from '@ant-design/icons';
+import { ArrowRight, LayoutGrid, LayoutTemplate, Zap, Lightbulb } from 'lucide-react';
 import DemoRenderer from '../components/demos/DemoRenderer.jsx';
+import Button from '../components/ui/Button.jsx';
 
 const teasers = [
   {
     href: '#/docs/getting-started',
-    icon: <ThunderboltOutlined />,
+    icon: <Zap />,
     title: 'Getting started',
     body: 'AI prompt, install, and tokens.',
   },
   {
     href: '#/components/overview',
-    icon: <AppstoreOutlined />,
+    icon: <LayoutGrid />,
     title: 'Components',
     body: 'Live demos, states, and measurements.',
   },
   {
-    href: '#/themes',
-    icon: <BgColorsOutlined />,
-    title: 'Themes',
-    body: 'Clinical, Connected, Care Green, and more.',
-  },
-  {
     href: '#/templates',
-    icon: <LayoutOutlined />,
+    icon: <LayoutTemplate />,
     title: 'Templates',
     body: 'Clearinghouse and denial workflows.',
+  },
+  {
+    href: '#/playground',
+    icon: <Lightbulb />,
+    title: 'Playground',
+    body: 'Try templates and tweak configuration live.',
   },
 ];
 
@@ -38,23 +36,22 @@ export default function LandingPage() {
       <section className="landing-hero">
         <div className="landing-hero-copy">
           <div className="landing-brand-lockup" aria-label="Eftson">
-            <span className="brand-mark" aria-hidden="true" />
             <strong className="landing-brand-word">Eftson</strong>
           </div>
           <h1>Open source design system</h1>
           <p>Customizable, agent-ready components for product teams.</p>
           <div className="landing-cta">
-            <Antd.Button type="primary" size="large" href="#/docs/getting-started">
+            <Button type="primary" size="large" href="#/docs/getting-started">
               Get started
-            </Antd.Button>
-            <Antd.Button size="large" href="#/components/overview">
-              Browse components <ArrowRightOutlined />
-            </Antd.Button>
+            </Button>
+            <Button size="large" href="#/components/overview" iconRight={<ArrowRight size={16} />}>
+              Browse components
+            </Button>
           </div>
         </div>
         <div className="landing-float-stage" aria-hidden="true">
           <div className="landing-float float-a">
-            <DemoRenderer name="Data Table" compact />
+            <DemoRenderer name="Table" compact />
           </div>
           <div className="landing-float float-b">
             <DemoRenderer name="Alert" />
@@ -78,7 +75,7 @@ export default function LandingPage() {
               <span>{item.icon}</span>
               <strong>{item.title}</strong>
               <p>{item.body}</p>
-              <em>Explore <ArrowRightOutlined /></em>
+              <em>Explore <ArrowRight /></em>
             </a>
           ))}
         </div>
@@ -87,14 +84,14 @@ export default function LandingPage() {
       <section className="landing-values">
         <div>
           <h2>Clear. Connected. Confident. Human.</h2>
-          <Antd.Button type="link" href="#/docs/spec/values">
-            Read design values <ArrowRightOutlined />
-          </Antd.Button>
+          <Button type="link" href="#/docs/spec/values" iconRight={<ArrowRight size={14} />}>
+            Read design values
+          </Button>
         </div>
         <div className="landing-value-cards">
           {['Clear', 'Connected', 'Confident', 'Human'].map((value, i) => (
             <div key={value} style={{ '--i': i }}>
-              <BulbOutlined />
+              <Lightbulb />
               <strong>{value}</strong>
             </div>
           ))}

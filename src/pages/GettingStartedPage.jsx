@@ -1,9 +1,8 @@
 import * as Antd from 'antd';
-import {
-  CopyOutlined, CheckOutlined, ThunderboltOutlined, AppstoreOutlined, BgColorsOutlined,
-} from '@ant-design/icons';
+import { Copy, Check, Zap, LayoutGrid, LayoutTemplate } from 'lucide-react';
 import { useState } from 'react';
 import PageMeta from '../components/shell/PageMeta.jsx';
+import Button from '../components/ui/Button.jsx';
 
 const aiPrompt = `Set up Eftson in this project.
 
@@ -34,10 +33,10 @@ export default function GettingStartedPage() {
         <h2>Quick start with AI</h2>
         <div className="ai-prompt-card">
           <div className="ai-prompt-toolbar">
-            <strong><ThunderboltOutlined /> Agent prompt</strong>
-            <Antd.Button size="small" icon={copied ? <CheckOutlined /> : <CopyOutlined />} onClick={copyPrompt}>
+            <strong><Zap /> Agent prompt</strong>
+            <Button size="small" icon={copied ? <Check /> : <Copy />} onClick={copyPrompt}>
               {copied ? 'Copied' : 'Copy'}
-            </Antd.Button>
+            </Button>
           </div>
           <pre><code>{aiPrompt}</code></pre>
         </div>
@@ -72,9 +71,9 @@ export default function GettingStartedPage() {
       <section id="next-steps">
         <h2>Next steps</h2>
         <div className="resource-links">
-          <a href="#/components/overview"><AppstoreOutlined />Components</a>
-          <a href="#/themes"><BgColorsOutlined />Themes</a>
-          <a href="#/templates"><ThunderboltOutlined />Templates</a>
+          <a href="#/components/overview"><LayoutGrid />Components</a>
+          <a href="#/templates"><LayoutTemplate />Templates</a>
+          <a href="#/playground"><Zap />Playground</a>
         </div>
       </section>
     </article>

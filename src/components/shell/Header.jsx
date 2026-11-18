@@ -1,11 +1,11 @@
-import { SearchOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
+import { Search, Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
+import Button from '../ui/Button.jsx';
 
 const navItems = [
   { section: 'docs', href: '#/docs/getting-started', label: 'Docs' },
   { section: 'components', href: '#/components/overview', label: 'Components' },
   { section: 'templates', href: '#/templates', label: 'Templates' },
-  { section: 'themes', href: '#/themes', label: 'Themes' },
   { section: 'playground', href: '#/playground', label: 'Playground' },
 ];
 
@@ -20,12 +20,24 @@ export default function Header({ route, mobileOpen, setMobileOpen, onSearch }) {
           </a>
         ))}
       </nav>
-      <button className="search-trigger" aria-label="Search" onClick={onSearch}>
-        <SearchOutlined />
-      </button>
-      <button className="mobile-menu" aria-label="Toggle navigation" onClick={() => setMobileOpen(!mobileOpen)}>
-        {mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
-      </button>
+      <Button
+        tone="soft"
+        size="small"
+        iconOnly
+        className="search-trigger"
+        aria-label="Search"
+        icon={<Search size={16} />}
+        onClick={onSearch}
+      />
+      <Button
+        tone="soft"
+        size="small"
+        iconOnly
+        className="mobile-menu"
+        aria-label="Toggle navigation"
+        icon={mobileOpen ? <X size={16} /> : <Menu size={16} />}
+        onClick={() => setMobileOpen(!mobileOpen)}
+      />
     </header>
   );
 }

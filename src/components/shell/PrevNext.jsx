@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { allComponents } from '../../data/components.js';
 import { designGroups } from '../../data/design.js';
 import { routeForComponent, routeForDesign } from '../../lib/routing.js';
@@ -35,14 +35,14 @@ export default function PrevNext({ route }) {
     <nav className="prev-next">
       {prev ? (
         <a href={prev.href}>
-          <ArrowLeftOutlined />
+          <ArrowLeft />
           <span><small>Previous</small>{prev.name}</span>
         </a>
       ) : <span />}
       {next ? (
         <a href={next.href}>
           <span><small>Next</small>{next.name}</span>
-          <ArrowRightOutlined />
+          <ArrowRight />
         </a>
       ) : <span />}
     </nav>

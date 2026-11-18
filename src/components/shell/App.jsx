@@ -13,7 +13,6 @@ import ComponentsOverview from '../../pages/ComponentsOverview.jsx';
 import AllComponentsPage from '../../pages/AllComponentsPage.jsx';
 import ChangelogPage from '../../pages/ChangelogPage.jsx';
 import ComponentPage from '../../pages/ComponentPage.jsx';
-import ThemesPage from '../../pages/ThemesPage.jsx';
 import TemplatesPage from '../../pages/TemplatesPage.jsx';
 import PlaygroundPage from '../../pages/PlaygroundPage.jsx';
 
@@ -25,14 +24,12 @@ function renderPage(route, { componentTab, setComponentTab } = {}) {
   if (route.type === 'changelog') return <ChangelogPage />;
   if (route.type === 'component') {
     return (
-      <ComponentPage
-        route={route}
+      <ComponentPage route={route}
         tab={componentTab}
         onTabChange={setComponentTab}
-      />
+ />
     );
   }
-  if (route.type === 'themes') return <ThemesPage />;
   if (route.type === 'templates') return <TemplatesPage />;
   if (route.type === 'playground') return <PlaygroundPage />;
   return <DesignPage route={route} />;
@@ -71,18 +68,17 @@ export default function App() {
   }, []);
 
   const hasSidebar = route.section === 'docs' || route.section === 'components';
-  const fullBleed = route.section === 'landing' || route.section === 'themes'
+  const fullBleed = route.section === 'landing'
     || route.section === 'templates' || route.section === 'playground';
 
   return (
     <ConfigProvider theme={eftsonThemeConfig}>
       <div className={`site ${route.section}-site`}>
-        <Header
-          route={route}
+        <Header route={route}
           mobileOpen={mobileOpen}
           setMobileOpen={setMobileOpen}
           onSearch={() => setSearchOpen(true)}
-        />
+ />
         {(hasSidebar || mobileOpen) && (
           <Sidebar route={route} open={mobileOpen} close={() => setMobileOpen(false)} />
         )}

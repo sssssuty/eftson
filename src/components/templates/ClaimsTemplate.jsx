@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import {
-  SearchOutlined, SettingOutlined,
-} from '@ant-design/icons';
+import { Search, Settings } from 'lucide-react';
 import Table from '../ui/Table.jsx';
+import Button from '../ui/Button.jsx';
 
 function ClaimsTemplate({ title = 'Clearinghouse Rejection', primaryColor = '#2D40CB', compact = false, mini = false }) {
   const [query, setQuery] = useState('');
@@ -42,35 +41,32 @@ function ClaimsTemplate({ title = 'Clearinghouse Rejection', primaryColor = '#2D
   ];
 
   return (
-    <div
-      className={`health-template claims-template ${compact ? 'is-compact' : ''} ${mini ? 'is-mini' : ''}`}
+    <div className={`health-template claims-template ${compact ? 'is-compact' : ''} ${mini ? 'is-mini' : ''}`}
       style={{ '--template-primary': primaryColor }}
     >
       <aside className="health-rail"><span className="health-mark">Y</span><i /><i /><i className="active" /><i /><i /></aside>
       <div className="health-workspace">
         <div className="health-template-header">
           <div><small>REVENUE CYCLE</small><h3>{title}</h3></div>
-          <button aria-label="Template settings"><SettingOutlined /></button>
+          <Button tone="soft" size="small" iconOnly icon={<Settings size={14} />} aria-label="Template settings" />
         </div>
         <div className="claim-filters">
           <label>
-            <SearchOutlined />
-            <input
-              value={query}
+            <Search />
+            <input value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Patient name or ID"
-            />
+ />
           </label>
-          <button>Encounter ID</button>
-          <button>Assignee</button>
-          <button>Status</button>
-          <button>More filters</button>
-          <button className="claim-assign" disabled={!selected.length}>
+          <Button tone="outline" size="small">Encounter ID</Button>
+          <Button tone="outline" size="small">Assignee</Button>
+          <Button tone="outline" size="small">Status</Button>
+          <Button tone="outline" size="small">More filters</Button>
+          <Button type="primary" size="small" className="claim-assign" disabled={!selected.length}>
             Assign{selected.length ? ` (${selected.length})` : ''}
-          </button>
+          </Button>
         </div>
-        <Table
-          className="claim-table"
+        <Table className="claim-table"
           size={compact || mini ? 'small' : 'middle'}
           columns={columns}
           dataSource={rows}
@@ -78,7 +74,7 @@ function ClaimsTemplate({ title = 'Clearinghouse Rejection', primaryColor = '#2D
             selectedRowKeys: selected,
             onChange: (keys) => setSelected(keys),
           }}
-        />
+ />
         {!rows.length && <div className="template-empty">No claims match this search.</div>}
       </div>
     </div>

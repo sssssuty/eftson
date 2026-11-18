@@ -36,9 +36,6 @@ export function parseRoute() {
   if (path === '/playground') {
     return { section: 'playground', type: 'playground', title: 'Playground' };
   }
-  if (path === '/themes') {
-    return { section: 'themes', type: 'themes', title: 'Themes' };
-  }
   if (path === '/docs' || path === '/docs/getting-started') {
     return { section: 'docs', type: 'getting-started', title: 'Getting started', group: 'Eftson Design' };
   }

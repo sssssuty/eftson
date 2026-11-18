@@ -1,12 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import { SearchOutlined, DownOutlined } from '@ant-design/icons';
-import { componentNav, navGroupForComponent } from '../../data/components.js';
+import { Search, ChevronRight } from 'lucide-react';
+import {
+  componentNavSections,
+  filterNavSections,
+} from '../../data/components.js';
 import { designGroups } from '../../data/design.js';
 import { routeForComponent, routeForDesign, slugify } from '../../lib/routing.js';
+
 function ComponentLink({ name, selected, onNavigate, nested = false }) {
   return (
-    <a
-      className={`${selected ? 'selected' : ''}${nested ? ' nav-child' : ''}`}
+    <a className={`${selected ? 'selected' : ''}${nested ? ' nav-child' : ''}`}
       href={routeForComponent(name)}
       onClick={onNavigate}
     >
@@ -15,11 +18,11 @@ function ComponentLink({ name, selected, onNavigate, nested = false }) {
   );
 }
 
-function ComponentGroup({ entry, route, query, onNavigate, forceOpen }) {
+function ComponentGroup({ entry, route, query, onNavigate }) {
   const selectedChild = entry.children.find(
     (name) => route.type === 'component' && slugify(route.title) === slugify(name),
   );
-  const [open, setOpen] = useState(Boolean(selectedChild) || forceOpen);
+  const [open, setOpen] = useState(Boolean(selectedChild));
 
   useEffect(() => {
     setOpen(Boolean(selectedChild));
@@ -40,25 +43,23 @@ function ComponentGroup({ entry, route, query, onNavigate, forceOpen }) {
 
   return (
     <div className={`nav-family${expanded ? ' is-open' : ''}`}>
-      <button
-        type="button"
+      <button type="button"
         className={`nav-family-trigger${selectedChild ? ' has-active' : ''}`}
         aria-expanded={expanded}
         onClick={() => setOpen((value) => !value)}
       >
         <span>{entry.name}</span>
-        <DownOutlined className="nav-family-chevron" aria-hidden="true" />
+        <ChevronRight className="nav-family-chevron" size={14} aria-hidden="true" />
       </button>
       {expanded && (
         <div className="nav-family-children" role="group" aria-label={entry.name}>
           {filteredChildren.map((name) => (
-            <ComponentLink
-              key={name}
+            <ComponentLink key={name}
               name={name}
               nested
               selected={slugify(route.title) === slugify(name) && route.type === 'component'}
               onNavigate={onNavigate}
-            />
+ />
           ))}
         </div>
       )}
@@ -71,23 +72,10 @@ export default function Sidebar({ route, open, close }) {
   const isComponents = route.section === 'components';
   const isDocs = route.section === 'docs';
 
-  const activeGroup = route.type === 'component' ? navGroupForComponent(route.title) : null;
-
-  const filteredNav = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return componentNav;
-    return componentNav
-      .map((entry) => {
-        if (entry.kind === 'item') {
-          return entry.name.toLowerCase().includes(q) ? entry : null;
-        }
-        const children = entry.children.filter((name) => (
-          name.toLowerCase().includes(q) || entry.name.toLowerCase().includes(q)
-        ));
-        return children.length ? { ...entry, children } : null;
-      })
-      .filter(Boolean);
-  }, [query]);
+  const filteredSections = useMemo(
+    () => filterNavSections(query, componentNavSections),
+    [query],
+  );
 
   return (
     <>
@@ -98,13 +86,11 @@ export default function Sidebar({ route, open, close }) {
             <a href="#/docs/getting-started" onClick={close}>Docs</a>
             <a href="#/components/overview" onClick={close}>Components</a>
             <a href="#/templates" onClick={close}>Templates</a>
-            <a href="#/themes" onClick={close}>Themes</a>
             <a href="#/playground" onClick={close}>Playground</a>
           </div>
 
           {isDocs && (
-            <a
-              className={route.type === 'getting-started' ? 'selected top-link' : 'top-link'}
+            <a className={route.type === 'getting-started' ? 'selected top-link' : 'top-link'}
               href="#/docs/getting-started"
               onClick={close}
             >
@@ -130,17 +116,15 @@ export default function Sidebar({ route, open, close }) {
           {isComponents && (
             <>
               <label className="sidebar-search">
-                <SearchOutlined aria-hidden="true" />
-                <input
-                  value={query}
+                <Search aria-hidden="true" />
+                <input value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search components…"
                   aria-label="Search components"
-                />
+ />
               </label>
 
-              <a
-                className={route.type === 'overview' ? 'selected top-link' : 'top-link'}
+              <a className={route.type === 'overview' ? 'selected top-link' : 'top-link'}
                 href="#/components/overview"
                 onClick={close}
               >
@@ -148,26 +132,28 @@ export default function Sidebar({ route, open, close }) {
               </a>
 
               <div className="sidebar-component-nav">
-                {filteredNav.map((entry) => (
-                  entry.kind === 'group' ? (
-                    <ComponentGroup
-                      key={entry.name}
-                      entry={entry}
-                      route={route}
-                      query={query}
-                      onNavigate={close}
-                      forceOpen={activeGroup?.name === entry.name}
-                    />
-                  ) : (
-                    <ComponentLink
-                      key={entry.name}
-                      name={entry.name}
-                      selected={route.type === 'component' && slugify(route.title) === slugify(entry.name)}
-                      onNavigate={close}
-                    />
-                  )
+                {filteredSections.map((section) => (
+                  <section className="nav-group" key={section.title}>
+                    <h3>{section.title}</h3>
+                    {section.items.map((entry) => (
+                      entry.kind === 'group' ? (
+                        <ComponentGroup key={entry.name}
+                          entry={entry}
+                          route={route}
+                          query={query}
+                          onNavigate={close}
+ />
+                      ) : (
+                        <ComponentLink key={entry.name}
+                          name={entry.name}
+                          selected={route.type === 'component' && slugify(route.title) === slugify(entry.name)}
+                          onNavigate={close}
+ />
+                      )
+                    ))}
+                  </section>
                 ))}
-                {!filteredNav.length && <p className="sidebar-empty">No matches</p>}
+                {!filteredSections.length && <p className="sidebar-empty">No matches</p>}
               </div>
             </>
           )}

@@ -1,14 +1,15 @@
 import * as Antd from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { componentGroups, componentDescriptions } from '../data/components.js';
 import { routeForComponent } from '../lib/routing.js';
 import DemoRenderer from '../components/demos/DemoRenderer.jsx';
 import VersionBadge from '../components/shell/VersionBadge.jsx';
+import Button from '../components/ui/Button.jsx';
 
 const previewNames = new Set([
-  'Card', 'Chip', 'Tabs', 'Input', 'Toggle', 'Dropdown Menu', 'Radio Selection',
-  'Warning Banner', 'Progress', 'Data Table', 'Slider', 'Tooltips', 'Pagination', 'Message',
+  'Button', 'Card', 'Chip', 'Icon', 'Tabs', 'Input', 'Toggle', 'Dropdown Menu', 'Radio Selection',
+  'Warning Banner', 'Progress', 'Table', 'Slider', 'Tooltips', 'Pagination', 'Message',
 ]);
 
 export default function ComponentsOverview() {
@@ -32,27 +33,26 @@ export default function ComponentsOverview() {
       <header className="browse-hero">
         <h1>Browse the library</h1>
         <div className="browse-cta">
-          <Antd.Button type="primary" size="large" href="#/docs/getting-started">
+          <Button type="primary" size="large" href="#/docs/getting-started">
             Install
-          </Antd.Button>
-          <Antd.Button size="large" href="#/components/all">
+          </Button>
+          <Button size="large" href="#/components/all">
             Specimens
-          </Antd.Button>
+          </Button>
         </div>
         <Antd.Input
           className="browse-search"
           allowClear
-          prefix={<SearchOutlined />}
+          prefix={<Search />}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search components…"
           aria-label="Search components"
-        />
+ />
       </header>
 
       {filteredGroups.map((group) => (
-        <section
-          id={group.title.toLowerCase().replace(/\s+/g, '-')}
+        <section id={group.title.toLowerCase().replace(/\s+/g, '-')}
           className="component-section browse-section"
           key={group.title}
         >

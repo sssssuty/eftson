@@ -5,6 +5,7 @@ import {
 import DemoBox from '../components/demos/DemoBox.jsx';
 import DemoRenderer from '../components/demos/DemoRenderer.jsx';
 import Table, { SimpleTable } from '../components/ui/Table.jsx';
+import Button from '../components/ui/Button.jsx';
 
 const TABS = [
   { id: 'overview', label: 'Overview' },
@@ -118,7 +119,16 @@ function StatesSection({ name }) {
           <div className={`state-card state-${state.key}`} key={state.key}>
             <span className="state-label">{state.label}</span>
             <div className="state-stage">
-              {name === 'Input' ? (
+              {name === 'Button' ? (
+                <Button
+                  type="primary"
+                  forceState={state.key === 'loading' ? 'default' : state.key}
+                  disabled={state.props.disabled}
+                  loading={state.props.loading}
+                >
+                  Primary Button
+                </Button>
+              ) : name === 'Input' ? (
                 <Antd.Input
                   placeholder="Value"
                   disabled={state.props.disabled}
@@ -129,7 +139,7 @@ function StatesSection({ name }) {
                   defaultChecked={state.key !== 'disabled'}
                   disabled={state.props.disabled}
                   loading={state.props.loading}
-                />
+ />
               ) : (
                 <div className={`state-proxy ${state.props.className || ''} ${state.props.disabled ? 'is-disabled' : ''} ${state.props.loading ? 'is-loading' : ''}`}>
                   <DemoRenderer name={name} compact />
@@ -169,11 +179,10 @@ function MeasurementsSection({ name }) {
             <span className="measure-tag bottom">border · font</span>
           </div>
         </div>
-        <SimpleTable
-          headers={['Property', 'Value']}
+        <SimpleTable headers={['Property', 'Value']}
           rows={rows.map(([k, v]) => [k, <code key={k}>{v}</code>])}
           columnProps={[{ width: 160 }, {}]}
-        />
+ />
       </div>
     </section>
   );
@@ -200,21 +209,19 @@ function OverviewTab({ name, code, rows, practices, description }) {
 
       <section id="anatomy">
         <h2>Anatomy</h2>
-        <SimpleTable
-          headers={['Element', 'Description']}
+        <SimpleTable headers={['Element', 'Description']}
           rows={rows}
           columnProps={[{ width: 160 }, {}]}
           className="anatomy-table"
-        />
+ />
       </section>
 
       <section id="best-practices">
         <h2>Best practices</h2>
-        <SimpleTable
-          headers={['Guidance', 'Practices']}
+        <SimpleTable headers={['Guidance', 'Practices']}
           rows={practiceRows}
           columnProps={[{ width: 120 }, {}]}
-        />
+ />
       </section>
 
       <section id="examples">
@@ -266,8 +273,7 @@ function AccessibilityTab() {
   return (
     <section id="color-contrast">
       <h2>Color contrast</h2>
-      <SimpleTable
-        className="a11y-contrast-table"
+      <SimpleTable className="a11y-contrast-table"
         headers={['Requirement', 'Ratio', 'Applies to', 'Guidance']}
         rows={COLOR_CONTRAST_ROWS.map(([req, ratio, applies, guidance]) => [
           req,
@@ -281,7 +287,7 @@ function AccessibilityTab() {
           { width: 180 },
           {},
         ]}
-      />
+ />
     </section>
   );
 }
@@ -310,8 +316,7 @@ export default function ComponentPage({ route, tab = 'overview', onTabChange }) 
         </p>
         <div className="component-tabs" role="tablist" aria-label={`${name} documentation`}>
           {TABS.map((item) => (
-            <button
-              key={item.id}
+            <button key={item.id}
               type="button"
               role="tab"
               id={`tab-${item.id}`}
@@ -326,20 +331,18 @@ export default function ComponentPage({ route, tab = 'overview', onTabChange }) 
         </div>
       </header>
 
-      <div
-        className="component-tab-panel"
+      <div className="component-tab-panel"
         role="tabpanel"
         id={`panel-${tab}`}
         aria-labelledby={`tab-${tab}`}
       >
         {tab === 'overview' && (
-          <OverviewTab
-            name={name}
+          <OverviewTab name={name}
             code={code}
             rows={rows}
             practices={practices}
             description={description}
-          />
+ />
         )}
         {tab === 'properties' && <PropertiesTab name={name} />}
         {tab === 'accessibility' && <AccessibilityTab />}
