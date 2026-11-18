@@ -1,0 +1,184 @@
+/* Molecule: Button — defined only by foundation tokens */
+.eftson-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--eftson-space-8);
+  border: 1px solid transparent;
+  border-radius: var(--eftson-corner-4);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--eftson-font);
+  font-size: 14px;
+  font-weight: var(--eftson-weight-medium);
+  line-height: 1;
+  transition: background .15s, color .15s, border-color .15s, box-shadow .15s;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.eftson-btn.is-lg {
+  min-height: var(--eftson-space-40);
+  padding: 0 var(--eftson-space-16);
+  border-radius: var(--eftson-corner-4);
+}
+
+.eftson-btn.is-md {
+  min-height: var(--eftson-space-32);
+  padding: 0 var(--eftson-space-12);
+  font-size: 13px;
+  border-radius: var(--eftson-corner-2);
+}
+
+.eftson-btn.is-sm {
+  min-height: calc(var(--eftson-space-24) + var(--eftson-space-4));
+  padding: 0 var(--eftson-space-8);
+  font-size: 12px;
+  gap: var(--eftson-space-4);
+  border-radius: var(--eftson-corner-2);
+}
+
+.eftson-btn.is-icon-only.is-lg {
+  width: var(--eftson-space-40);
+  padding: 0;
+}
+
+.eftson-btn.is-icon-only.is-md {
+  width: var(--eftson-space-32);
+  padding: 0;
+}
+
+.eftson-btn.is-icon-only.is-sm {
+  width: calc(var(--eftson-space-24) + var(--eftson-space-4));
+  padding: 0;
+}
+
+.eftson-btn.is-block { width: 100%; }
+
+.eftson-btn.is-solid {
+  color: var(--eftson-gray-0);
+  background: var(--eftson-gray-900);
+}
+
+.eftson-btn.is-solid.is-hover,
+.eftson-btn.is-solid:hover:not(:disabled) {
+  background: var(--eftson-blue-900);
+  color: var(--eftson-gray-0);
+}
+
+.eftson-btn.is-solid.is-pressed,
+.eftson-btn.is-solid:active:not(:disabled) {
+  background: var(--eftson-blue-950);
+  color: var(--eftson-gray-0);
+}
+
+.eftson-btn.is-soft {
+  color: var(--eftson-gray-900);
+  background: var(--eftson-gray-100);
+}
+
+.eftson-btn.is-soft.is-hover,
+.eftson-btn.is-soft:hover:not(:disabled) {
+  background: var(--eftson-blue-100);
+  color: var(--eftson-blue-900);
+}
+
+.eftson-btn.is-soft.is-pressed,
+.eftson-btn.is-soft:active:not(:disabled) {
+  background: var(--eftson-blue-200);
+  color: var(--eftson-blue-900);
+}
+
+.eftson-btn.is-outline {
+  color: var(--eftson-gray-900);
+  background: var(--eftson-gray-0);
+  border-color: var(--eftson-gray-200);
+}
+
+.eftson-btn.is-outline.is-hover,
+.eftson-btn.is-outline:hover:not(:disabled) {
+  color: var(--eftson-gray-900);
+  border-color: var(--eftson-gray-300);
+  background: var(--eftson-gray-0);
+}
+
+.eftson-btn.is-outline.is-pressed,
+.eftson-btn.is-outline:active:not(:disabled) {
+  background: var(--eftson-gray-100);
+}
+
+.eftson-btn.is-text,
+.eftson-btn.is-link {
+  color: var(--eftson-gray-900);
+  background: transparent;
+  padding-inline: var(--eftson-space-4);
+}
+
+.eftson-btn.is-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.eftson-btn.is-text.is-hover,
+.eftson-btn.is-text:hover:not(:disabled),
+.eftson-btn.is-link.is-hover,
+.eftson-btn.is-link:hover:not(:disabled) {
+  color: var(--eftson-blue-900);
+  background: var(--eftson-blue-50);
+}
+
+.eftson-btn.is-text.is-pressed,
+.eftson-btn.is-text:active:not(:disabled),
+.eftson-btn.is-link.is-pressed,
+.eftson-btn.is-link:active:not(:disabled) {
+  color: var(--eftson-blue-950);
+  background: var(--eftson-blue-100);
+}
+
+.eftson-btn.is-danger.is-solid {
+  background: var(--eftson-red-dark);
+}
+
+.eftson-btn.is-danger.is-solid:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--eftson-red-dark) 85%, var(--eftson-gray-900));
+}
+
+.eftson-btn.is-danger.is-soft,
+.eftson-btn.is-danger.is-outline {
+  color: var(--eftson-red-dark);
+}
+
+.eftson-btn-spinner {
+  animation: eftson-spin 0.9s linear infinite;
+}
+
+@keyframes eftson-spin {
+  to { transform: rotate(360deg); }
+}
+
+.eftson-btn:disabled {
+  color: var(--eftson-gray-400) !important;
+  background: var(--eftson-gray-100) !important;
+  border-color: transparent !important;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.editor-tabs .eftson-btn.active,
+.preview-toolbar .eftson-btn.active {
+  color: var(--eftson-blue-900);
+  background: var(--eftson-blue-100);
+  border-color: transparent;
+}
+
+.claim-filters .eftson-btn { flex: 0 0 auto; }
+
+.site-header .search-trigger.eftson-btn,
+.site-header .mobile-menu.eftson-btn {
+  background: transparent;
+}
+
+.site-header .search-trigger.eftson-btn:hover,
+.site-header .mobile-menu.eftson-btn:hover {
+  background: var(--soft);
+}

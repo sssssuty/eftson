@@ -1,6 +1,7 @@
 import { ChevronUp, ChevronDown, Gem } from 'lucide-react';
 import * as Antd from 'antd';
 import Button from '../ui/Button.jsx';
+import { lucideSlots } from './lucideSlots.jsx';
 
 function SortIcon() {
   return (
@@ -85,6 +86,7 @@ function ContentRow() {
           style={{ width: 140 }}
           placeholder="Please select"
           options={[{ value: 'option-a', label: 'Option A' }, { value: 'option-b', label: 'Option B' }]}
+          suffixIcon={lucideSlots.chevronDown}
         />
       </ContentCell>
       <ContentCell>

@@ -4,28 +4,28 @@ export const typographyDescription =
   'Text styles can be applied in Figma using styles in the properties panel on the right.';
 
 export const TYPE_STYLES = [
-  { style: 'Heading H1', size: 40, weight: 'Semibold', line: 48 },
-  { style: 'Heading H2', size: 36, weight: 'Semibold', line: 44 },
-  { style: 'Heading H3', size: 32, weight: 'Semibold', line: 40 },
-  { style: 'Heading H4', size: 28, weight: 'Semibold', line: 36 },
-  { style: 'Heading H5', size: 24, weight: 'Semibold', line: 32 },
-  { style: 'Heading H6', size: 20, weight: 'Semibold', line: 24 },
-  { style: 'Label XLarge Semibold', size: 18, weight: 'Semibold', line: 28 },
-  { style: 'Label XLarge Medium', size: 18, weight: 'Medium', line: 28 },
-  { style: 'Label Large Semibold', size: 16, weight: 'Semibold', line: 22 },
-  { style: 'Label Large Medium', size: 16, weight: 'Medium', line: 22 },
-  { style: 'Label Medium Semibold', size: 14, weight: 'Semibold', line: 18 },
-  { style: 'Label Medium Medium', size: 14, weight: 'Medium', line: 18 },
-  { style: 'Label Small Semibold', size: 12, weight: 'Semibold', line: 16 },
-  { style: 'Label Small Medium', size: 12, weight: 'Medium', line: 16 },
-  { style: 'Label Extra Small Semibold', size: 10, weight: 'Semibold', line: 12 },
-  { style: 'Label Extra Small Medium', size: 10, weight: 'Medium', line: 12 },
-  { style: 'Paragraph XLarge Regular', size: 18, weight: 'Regular', line: 22 },
-  { style: 'Paragraph Large Regular', size: 16, weight: 'Regular', line: 20 },
-  { style: 'Paragraph Medium Regular', size: 14, weight: 'Regular', line: 18 },
-  { style: 'Paragraph Small Regular', size: 12, weight: 'Regular', line: 16 },
-  { style: 'OVERLINE MEDIUM', size: 14, weight: 'Semibold', line: 18, overline: true },
-  { style: 'OVERLINE SMALL', size: 12, weight: 'Semibold', line: 16, overline: true },
+  { style: 'Heading H1', size: 40, weight: 'Semibold', line: 48, className: 'eftson-type-h1' },
+  { style: 'Heading H2', size: 36, weight: 'Semibold', line: 44, className: 'eftson-type-h2' },
+  { style: 'Heading H3', size: 32, weight: 'Semibold', line: 40, className: 'eftson-type-h3' },
+  { style: 'Heading H4', size: 28, weight: 'Semibold', line: 36, className: 'eftson-type-h4' },
+  { style: 'Heading H5', size: 24, weight: 'Semibold', line: 32, className: 'eftson-type-h5' },
+  { style: 'Heading H6', size: 20, weight: 'Semibold', line: 24, className: 'eftson-type-h6' },
+  { style: 'Label XLarge Semibold', size: 18, weight: 'Semibold', line: 28, className: 'eftson-type-label-xlarge-semibold' },
+  { style: 'Label XLarge Medium', size: 18, weight: 'Medium', line: 28, className: 'eftson-type-label-xlarge-medium' },
+  { style: 'Label Large Semibold', size: 16, weight: 'Semibold', line: 22, className: 'eftson-type-label-large-semibold' },
+  { style: 'Label Large Medium', size: 16, weight: 'Medium', line: 22, className: 'eftson-type-label-large-medium' },
+  { style: 'Label Medium Semibold', size: 14, weight: 'Semibold', line: 18, className: 'eftson-type-label-medium-semibold' },
+  { style: 'Label Medium Medium', size: 14, weight: 'Medium', line: 18, className: 'eftson-type-label-medium-medium' },
+  { style: 'Label Small Semibold', size: 12, weight: 'Semibold', line: 16, className: 'eftson-type-label-small-semibold' },
+  { style: 'Label Small Medium', size: 12, weight: 'Medium', line: 16, className: 'eftson-type-label-small-medium' },
+  { style: 'Label Extra Small Semibold', size: 10, weight: 'Semibold', line: 12, className: 'eftson-type-label-extra-small-semibold' },
+  { style: 'Label Extra Small Medium', size: 10, weight: 'Medium', line: 12, className: 'eftson-type-label-extra-small-medium' },
+  { style: 'Paragraph XLarge Regular', size: 18, weight: 'Regular', line: 22, className: 'eftson-type-paragraph-xlarge' },
+  { style: 'Paragraph Large Regular', size: 16, weight: 'Regular', line: 20, className: 'eftson-type-paragraph-large' },
+  { style: 'Paragraph Medium Regular', size: 14, weight: 'Regular', line: 18, className: 'eftson-type-paragraph-medium' },
+  { style: 'Paragraph Small Regular', size: 12, weight: 'Regular', line: 16, className: 'eftson-type-paragraph-small' },
+  { style: 'OVERLINE MEDIUM', size: 14, weight: 'Semibold', line: 18, overline: true, className: 'eftson-type-overline-medium' },
+  { style: 'OVERLINE SMALL', size: 12, weight: 'Semibold', line: 16, overline: true, className: 'eftson-type-overline-small' },
 ];
 
 export const weightValue = {
@@ -37,102 +37,112 @@ export const weightValue = {
 export const colorsDescription =
   'Root tokens are linked to the brand color palette.';
 
+function colorToken(name, hex) {
+  const slug = name.toLowerCase();
+  return {
+    name,
+    hex,
+    className: `eftson-color-${slug}`,
+    cssVar: `--eftson-${slug}`,
+  };
+}
+
 export const COLOR_GROUPS = [
   {
     name: 'Main',
-    tokens: [{ name: 'Indigo-default', hex: '#2D48DA' }],
+    tokens: [colorToken('Indigo-default', '#2D48DA')],
   },
   {
     name: 'Blue',
     tokens: [
-      { name: 'Blue-50', hex: '#F2F5FF' },
-      { name: 'Blue-100', hex: '#E2E9FF' },
-      { name: 'Blue-200', hex: '#C3D2FF' },
-      { name: 'Blue-300', hex: '#99B5FF' },
-      { name: 'Blue-500', hex: '#2B6FFF' },
-      { name: 'Blue-800', hex: '#242982' },
-      { name: 'Blue-900', hex: '#0D0B54' },
-      { name: 'Blue-950', hex: '#03041F' },
+      colorToken('Blue-50', '#F2F5FF'),
+      colorToken('Blue-100', '#E2E9FF'),
+      colorToken('Blue-200', '#C3D2FF'),
+      colorToken('Blue-300', '#99B5FF'),
+      colorToken('Blue-500', '#2B6FFF'),
+      colorToken('Blue-800', '#242982'),
+      colorToken('Blue-900', '#0D0B54'),
+      colorToken('Blue-950', '#03041F'),
     ],
   },
   {
     name: 'Yellow',
     tokens: [
-      { name: 'Yellow-Light', hex: '#FFF9F2' },
-      { name: 'Yellow-Light2', hex: '#FEF3D7' },
-      { name: 'Yellow-Medium', hex: '#FBBF6E' },
-      { name: 'Yellow-Medium2', hex: '#DB8702' },
-      { name: 'Yellow-Dark', hex: '#A45313' },
+      colorToken('Yellow-Light', '#FFF9F2'),
+      colorToken('Yellow-Light2', '#FEF3D7'),
+      colorToken('Yellow-Medium', '#FBBF6E'),
+      colorToken('Yellow-Medium2', '#DB8702'),
+      colorToken('Yellow-Dark', '#A45313'),
     ],
   },
   {
     name: 'Lime',
     tokens: [
-      { name: 'Lime-Light', hex: '#F9FAED' },
-      { name: 'Lime-Light2', hex: '#F1F6D0' },
-      { name: 'Lime-Medium', hex: '#DEF193' },
-      { name: 'Lime-Dark', hex: '#5D870B' },
+      colorToken('Lime-Light', '#F9FAED'),
+      colorToken('Lime-Light2', '#F1F6D0'),
+      colorToken('Lime-Medium', '#DEF193'),
+      colorToken('Lime-Dark', '#5D870B'),
     ],
   },
   {
     name: 'Green',
     tokens: [
-      { name: 'Green-Light', hex: '#F5FDF8' },
-      { name: 'Green-Light2', hex: '#E1F7E8' },
-      { name: 'Green-Medium', hex: '#A1E4B8' },
-      { name: 'Green-Dark', hex: '#13803D' },
+      colorToken('Green-Light', '#F5FDF8'),
+      colorToken('Green-Light2', '#E1F7E8'),
+      colorToken('Green-Medium', '#A1E4B8'),
+      colorToken('Green-Dark', '#13803D'),
     ],
   },
   {
     name: 'Teal',
     tokens: [
-      { name: 'Teal-Light', hex: '#F2FDFB' },
-      { name: 'Teal-Light2', hex: '#D7F5F1' },
-      { name: 'Teal-Medium', hex: '#94E5D8' },
-      { name: 'Teal-Dark', hex: '#069FA3' },
+      colorToken('Teal-Light', '#F2FDFB'),
+      colorToken('Teal-Light2', '#D7F5F1'),
+      colorToken('Teal-Medium', '#94E5D8'),
+      colorToken('Teal-Dark', '#069FA3'),
     ],
   },
   {
     name: 'Purple',
     tokens: [
-      { name: 'Purple-Light', hex: '#FBFCFE' },
-      { name: 'Purple-Light2', hex: '#EEE5FD' },
-      { name: 'Purple-Medium', hex: '#E7DBFF' },
-      { name: 'Purple-Dark', hex: '#7F42D5' },
+      colorToken('Purple-Light', '#FBFCFE'),
+      colorToken('Purple-Light2', '#EEE5FD'),
+      colorToken('Purple-Medium', '#E7DBFF'),
+      colorToken('Purple-Dark', '#7F42D5'),
     ],
   },
   {
     name: 'Pink',
     tokens: [
-      { name: 'Pink-Light', hex: '#FFF5F8' },
-      { name: 'Pink-Light2', hex: '#FFE3EF' },
-      { name: 'Pink-Medium', hex: '#FEB8D5' },
-      { name: 'Pink-Dark', hex: '#D11062' },
+      colorToken('Pink-Light', '#FFF5F8'),
+      colorToken('Pink-Light2', '#FFE3EF'),
+      colorToken('Pink-Medium', '#FEB8D5'),
+      colorToken('Pink-Dark', '#D11062'),
     ],
   },
   {
     name: 'Red',
     tokens: [
-      { name: 'Red-Light', hex: '#FFF3F3' },
-      { name: 'Red-Light2', hex: '#FEE0E0' },
-      { name: 'Red-Medium', hex: '#E65D5D' },
-      { name: 'Red-Dark', hex: '#A31D16' },
+      colorToken('Red-Light', '#FFF3F3'),
+      colorToken('Red-Light2', '#FEE0E0'),
+      colorToken('Red-Medium', '#E65D5D'),
+      colorToken('Red-Dark', '#A31D16'),
     ],
   },
   {
     name: 'Gray',
     tokens: [
-      { name: 'Gray-0', hex: '#FDFDFD' },
-      { name: 'Gray-50', hex: '#F9F9F9' },
-      { name: 'Gray-100', hex: '#EBEBEF' },
-      { name: 'Gray-200', hex: '#D6D7DD' },
-      { name: 'Gray-300', hex: '#B7B9C0' },
-      { name: 'Gray-400', hex: '#A3A6B5' },
-      { name: 'Gray-500', hex: '#8A8E9A' },
-      { name: 'Gray-600', hex: '#6D707D' },
-      { name: 'Gray-700', hex: '#4D515F' },
-      { name: 'Gray-800', hex: '#2D303A' },
-      { name: 'Gray-900', hex: '#141414' },
+      colorToken('Gray-0', '#FDFDFD'),
+      colorToken('Gray-50', '#F9F9F9'),
+      colorToken('Gray-100', '#EBEBEF'),
+      colorToken('Gray-200', '#D6D7DD'),
+      colorToken('Gray-300', '#B7B9C0'),
+      colorToken('Gray-400', '#A3A6B5'),
+      colorToken('Gray-500', '#8A8E9A'),
+      colorToken('Gray-600', '#6D707D'),
+      colorToken('Gray-700', '#4D515F'),
+      colorToken('Gray-800', '#2D303A'),
+      colorToken('Gray-900', '#141414'),
     ],
   },
 ];
@@ -141,28 +151,45 @@ export const spacingDescription =
   "Spacing refers to the amount of empty or 'white space' between and around interface elements to create visual structure, improve readability, and enhance user interaction.";
 
 export const SPACING_TOKENS = [
-  { token: 'Spacing-0', size: '0px' },
-  { token: 'Spacing-4', size: '4px' },
-  { token: 'Spacing-8', size: '8px' },
-  { token: 'Spacing-12', size: '12px' },
-  { token: 'Spacing-16', size: '16px' },
-  { token: 'Spacing-24', size: '24px' },
-  { token: 'Spacing-32', size: '32px' },
-  { token: 'Spacing-40', size: '40px' },
-  { token: 'Spacing-48', size: '48px' },
-  { token: 'Spacing-56', size: '56px' },
-  { token: 'Spacing-64', size: '64px' },
-  { token: 'Spacing-72', size: '72px' },
+  { token: 'Spacing-0', size: '0px', className: 'eftson-space-0', cssVar: '--eftson-space-0' },
+  { token: 'Spacing-4', size: '4px', className: 'eftson-space-4', cssVar: '--eftson-space-4' },
+  { token: 'Spacing-8', size: '8px', className: 'eftson-space-8', cssVar: '--eftson-space-8' },
+  { token: 'Spacing-12', size: '12px', className: 'eftson-space-12', cssVar: '--eftson-space-12' },
+  { token: 'Spacing-16', size: '16px', className: 'eftson-space-16', cssVar: '--eftson-space-16' },
+  { token: 'Spacing-24', size: '24px', className: 'eftson-space-24', cssVar: '--eftson-space-24' },
+  { token: 'Spacing-32', size: '32px', className: 'eftson-space-32', cssVar: '--eftson-space-32' },
+  { token: 'Spacing-40', size: '40px', className: 'eftson-space-40', cssVar: '--eftson-space-40' },
+  { token: 'Spacing-48', size: '48px', className: 'eftson-space-48', cssVar: '--eftson-space-48' },
+  { token: 'Spacing-56', size: '56px', className: 'eftson-space-56', cssVar: '--eftson-space-56' },
+  { token: 'Spacing-64', size: '64px', className: 'eftson-space-64', cssVar: '--eftson-space-64' },
+  { token: 'Spacing-72', size: '72px', className: 'eftson-space-72', cssVar: '--eftson-space-72' },
 ];
 
 export const cornerDescription =
-  'Corner refers to border radius of rectangular shaped elements.';
+  'Corner refers to border radius of rectangular shaped elements. Corner-2 is for medium and small buttons only, Corner-8 is for Conversational AI Message blurbs only, and Corner-4 is the default for everything else.';
 
 export const CORNER_TOKENS = [
-  { token: 'Corner-2', size: '2px' },
-  { token: 'Corner-4', size: '4px' },
-  { token: 'Corner-8', size: '8px' },
-  { token: 'Corner-16', size: '16px' },
+  {
+    token: 'Corner-2',
+    size: '2px',
+    className: 'eftson-corner-2',
+    cssVar: '--eftson-corner-2',
+    use: 'Medium and small buttons only',
+  },
+  {
+    token: 'Corner-4',
+    size: '4px',
+    className: 'eftson-corner-4',
+    cssVar: '--eftson-corner-4',
+    use: 'Default for every other molecule surface',
+  },
+  {
+    token: 'Corner-8',
+    size: '8px',
+    className: 'eftson-corner-8',
+    cssVar: '--eftson-corner-8',
+    use: 'Conversational AI Message blurbs only',
+  },
 ];
 
 export const SHADOW_TOKENS = [
@@ -175,6 +202,8 @@ export const SHADOW_TOKENS = [
     opacity: '10%',
     color: '#11265F',
     css: '0 4px 10px 0 rgba(17, 38, 95, 0.1)',
+    className: 'eftson-shadow-small',
+    cssVar: '--eftson-shadow-small',
   },
 ];
 

@@ -1,0 +1,33 @@
+/* Foundation: Grid — 12-column product layout */
+:root {
+  --eftson-grid-columns: 12;
+  --eftson-grid-gutter: var(--eftson-space-24);
+}
+
+.eftson-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--eftson-grid-columns), minmax(0, 1fr));
+  gap: var(--eftson-grid-gutter);
+  width: 100%;
+}
+
+.eftson-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(var(--eftson-grid-columns), minmax(0, 1fr));
+  gap: var(--eftson-space-8);
+  min-height: var(--eftson-space-72);
+  width: 100%;
+}
+
+.eftson-grid-demo > span {
+  background: color-mix(in srgb, var(--eftson-indigo-default) 12%, transparent);
+  border-radius: var(--eftson-corner-4);
+}
+
+.eftson-grid-span-1 { grid-column: span 1; }
+.eftson-grid-span-2 { grid-column: span 2; }
+.eftson-grid-span-3 { grid-column: span 3; }
+.eftson-grid-span-4 { grid-column: span 4; }
+.eftson-grid-span-6 { grid-column: span 6; }
+.eftson-grid-span-8 { grid-column: span 8; }
+.eftson-grid-span-12 { grid-column: span 12; }

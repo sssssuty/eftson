@@ -83,14 +83,15 @@ export function parseRoute() {
   return { section: 'landing', type: 'landing', title: 'Eftson Design' };
 }
 
+/** Ant Design theme mapped from foundation tokens (Indigo-default, Corner-4 default, Spacing-40). */
 export const eftsonThemeConfig = {
   token: {
-    colorPrimary: '#2D40CB',
-    colorInfo: '#2B6FF6',
-    colorSuccess: '#15803D',
-    colorWarning: '#B45309',
-    colorError: '#A41616',
-    borderRadius: 8,
+    colorPrimary: '#2D48DA',
+    colorInfo: '#2B6FFF',
+    colorSuccess: '#13803D',
+    colorWarning: '#DB8702',
+    colorError: '#A31D16',
+    borderRadius: 4,
     controlHeight: 40,
     fontFamily: "Elza, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
     fontWeightStrong: 600,

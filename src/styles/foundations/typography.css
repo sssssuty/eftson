@@ -1,0 +1,65 @@
+/* Foundation: Typography — Elza type styles */
+:root {
+  --eftson-font: Elza, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --eftson-weight-regular: 500;
+  --eftson-weight-medium: 500;
+  --eftson-weight-semibold: 600;
+}
+
+.eftson-type-h1,
+.eftson-type-h2,
+.eftson-type-h3,
+.eftson-type-h4,
+.eftson-type-h5,
+.eftson-type-h6,
+.eftson-type-label-xlarge-semibold,
+.eftson-type-label-xlarge-medium,
+.eftson-type-label-large-semibold,
+.eftson-type-label-large-medium,
+.eftson-type-label-medium-semibold,
+.eftson-type-label-medium-medium,
+.eftson-type-label-small-semibold,
+.eftson-type-label-small-medium,
+.eftson-type-label-extra-small-semibold,
+.eftson-type-label-extra-small-medium,
+.eftson-type-paragraph-xlarge,
+.eftson-type-paragraph-large,
+.eftson-type-paragraph-medium,
+.eftson-type-paragraph-small,
+.eftson-type-overline-medium,
+.eftson-type-overline-small {
+  font-family: var(--eftson-font);
+  margin: 0;
+}
+
+.eftson-type-h1 { font-size: 40px; line-height: 48px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-h2 { font-size: 36px; line-height: 44px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-h3 { font-size: 32px; line-height: 40px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-h4 { font-size: 28px; line-height: 36px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-h5 { font-size: 24px; line-height: 32px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-h6 { font-size: 20px; line-height: 24px; font-weight: var(--eftson-weight-semibold); }
+
+.eftson-type-label-xlarge-semibold { font-size: 18px; line-height: 28px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-label-xlarge-medium { font-size: 18px; line-height: 28px; font-weight: var(--eftson-weight-medium); }
+.eftson-type-label-large-semibold { font-size: 16px; line-height: 22px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-label-large-medium { font-size: 16px; line-height: 22px; font-weight: var(--eftson-weight-medium); }
+.eftson-type-label-medium-semibold { font-size: 14px; line-height: 18px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-label-medium-medium { font-size: 14px; line-height: 18px; font-weight: var(--eftson-weight-medium); }
+.eftson-type-label-small-semibold { font-size: 12px; line-height: 16px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-label-small-medium { font-size: 12px; line-height: 16px; font-weight: var(--eftson-weight-medium); }
+.eftson-type-label-extra-small-semibold { font-size: 10px; line-height: 12px; font-weight: var(--eftson-weight-semibold); }
+.eftson-type-label-extra-small-medium { font-size: 10px; line-height: 12px; font-weight: var(--eftson-weight-medium); }
+
+.eftson-type-paragraph-xlarge { font-size: 18px; line-height: 22px; font-weight: var(--eftson-weight-regular); }
+.eftson-type-paragraph-large { font-size: 16px; line-height: 20px; font-weight: var(--eftson-weight-regular); }
+.eftson-type-paragraph-medium { font-size: 14px; line-height: 18px; font-weight: var(--eftson-weight-regular); }
+.eftson-type-paragraph-small { font-size: 12px; line-height: 16px; font-weight: var(--eftson-weight-regular); }
+
+.eftson-type-overline-medium {
+  font-size: 14px; line-height: 18px; font-weight: var(--eftson-weight-semibold);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.eftson-type-overline-small {
+  font-size: 12px; line-height: 16px; font-weight: var(--eftson-weight-semibold);
+  letter-spacing: .08em; text-transform: uppercase;
+}

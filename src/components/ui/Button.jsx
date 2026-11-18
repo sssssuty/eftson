@@ -46,8 +46,15 @@ export default function Button({
   const resolvedTone = tone || TONE_MAP[type] || 'soft';
   const resolvedSize = SIZE_MAP[size] || 'md';
   const onlyIcon = iconOnly || (Boolean(icon) && !children && !iconRight);
+  const typeClass = resolvedSize === 'lg'
+    ? 'eftson-type-label-medium-medium'
+    : resolvedSize === 'sm'
+      ? 'eftson-type-label-small-medium'
+      : 'eftson-type-label-medium-medium';
+
   const classes = [
     'eftson-btn',
+    typeClass,
     `is-${resolvedTone}`,
     `is-${resolvedSize}`,
     onlyIcon ? 'is-icon-only' : '',

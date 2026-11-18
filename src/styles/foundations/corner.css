@@ -1,0 +1,10 @@
+/* Foundation: Corner */
+:root {
+  --eftson-corner-2: 2px;
+  --eftson-corner-4: 4px;
+  --eftson-corner-8: 8px;
+}
+
+.eftson-corner-2 { border-radius: var(--eftson-corner-2); }
+.eftson-corner-4 { border-radius: var(--eftson-corner-4); }
+.eftson-corner-8 { border-radius: var(--eftson-corner-8); }

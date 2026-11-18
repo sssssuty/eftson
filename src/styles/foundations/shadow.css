@@ -1,0 +1,8 @@
+/* Foundation: Shadow */
+:root {
+  --eftson-shadow-small: 0 4px 10px 0 rgba(17, 38, 95, 0.1);
+}
+
+.eftson-shadow-small {
+  box-shadow: var(--eftson-shadow-small);
+}

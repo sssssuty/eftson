@@ -1,0 +1,46 @@
+/* Foundation: Spacing */
+:root {
+  --eftson-space-0: 0px;
+  --eftson-space-4: 4px;
+  --eftson-space-8: 8px;
+  --eftson-space-12: 12px;
+  --eftson-space-16: 16px;
+  --eftson-space-24: 24px;
+  --eftson-space-32: 32px;
+  --eftson-space-40: 40px;
+  --eftson-space-48: 48px;
+  --eftson-space-56: 56px;
+  --eftson-space-64: 64px;
+  --eftson-space-72: 72px;
+}
+
+.eftson-space-0 { --eftson-space: var(--eftson-space-0); }
+.eftson-space-4 { --eftson-space: var(--eftson-space-4); }
+.eftson-space-8 { --eftson-space: var(--eftson-space-8); }
+.eftson-space-12 { --eftson-space: var(--eftson-space-12); }
+.eftson-space-16 { --eftson-space: var(--eftson-space-16); }
+.eftson-space-24 { --eftson-space: var(--eftson-space-24); }
+.eftson-space-32 { --eftson-space: var(--eftson-space-32); }
+.eftson-space-40 { --eftson-space: var(--eftson-space-40); }
+.eftson-space-48 { --eftson-space: var(--eftson-space-48); }
+.eftson-space-56 { --eftson-space: var(--eftson-space-56); }
+.eftson-space-64 { --eftson-space: var(--eftson-space-64); }
+.eftson-space-72 { --eftson-space: var(--eftson-space-72); }
+
+.eftson-p-0 { padding: var(--eftson-space-0); }
+.eftson-p-4 { padding: var(--eftson-space-4); }
+.eftson-p-8 { padding: var(--eftson-space-8); }
+.eftson-p-12 { padding: var(--eftson-space-12); }
+.eftson-p-16 { padding: var(--eftson-space-16); }
+.eftson-p-24 { padding: var(--eftson-space-24); }
+
+.eftson-px-4 { padding-inline: var(--eftson-space-4); }
+.eftson-px-8 { padding-inline: var(--eftson-space-8); }
+.eftson-px-12 { padding-inline: var(--eftson-space-12); }
+.eftson-px-16 { padding-inline: var(--eftson-space-16); }
+
+.eftson-gap-4 { gap: var(--eftson-space-4); }
+.eftson-gap-8 { gap: var(--eftson-space-8); }
+.eftson-gap-12 { gap: var(--eftson-space-12); }
+.eftson-gap-16 { gap: var(--eftson-space-16); }
+.eftson-gap-24 { gap: var(--eftson-space-24); }

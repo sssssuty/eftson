@@ -1,6 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import 'antd/dist/reset.css';
+import './styles/foundations/index.css';
+import './styles/molecules/index.css';
 import './styles.css';
 import App from './components/shell/App.jsx';
 

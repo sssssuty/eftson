@@ -6,6 +6,7 @@ import { routeForComponent } from '../lib/routing.js';
 import DemoRenderer from '../components/demos/DemoRenderer.jsx';
 import VersionBadge from '../components/shell/VersionBadge.jsx';
 import Button from '../components/ui/Button.jsx';
+import { lucideSlots } from '../components/demos/lucideSlots.jsx';
 
 const previewNames = new Set([
   'Button', 'Card', 'Chip', 'Icon', 'Tabs', 'Input', 'Toggle', 'Dropdown Menu', 'Radio Selection',
@@ -42,8 +43,8 @@ export default function ComponentsOverview() {
         </div>
         <Antd.Input
           className="browse-search"
-          allowClear
-          prefix={<Search />}
+          allowClear={{ clearIcon: lucideSlots.clear }}
+          prefix={<Search size={14} aria-hidden="true" />}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search components…"

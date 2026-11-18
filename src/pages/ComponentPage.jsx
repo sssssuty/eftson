@@ -260,7 +260,7 @@ function PropertiesTab({ name }) {
       <section id="design-token">
         <h2>Design Token</h2>
         <div className="token-grid">
-          {[['colorPrimary', '#2D40CB'], ['borderRadius', '8px'], ['controlHeight', '40px'], ['fontFamily', 'Elza']].map(([k, v]) => (
+          {[['colorPrimary', '#2D48DA'], ['borderRadius', '4px'], ['controlHeight', '40px'], ['fontFamily', 'Elza']].map(([k, v]) => (
             <div key={k}><code>{k}</code><strong>{v}</strong></div>
           ))}
         </div>

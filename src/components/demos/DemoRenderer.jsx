@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as Antd from 'antd';
 import {
   Search, SquarePen, ArrowRight, Upload, User, Bell, Settings, Plus, Download, Trash2,
-  CircleCheck, CircleAlert, LayoutGrid, List, Table as TableIcon, ChevronUp, ChevronDown,
+  CircleCheck, LayoutGrid, List, Table as TableIcon, ChevronUp, ChevronDown, Copy,
 } from 'lucide-react';
 import Table, { TableActionButton } from '../ui/Table.jsx';
 import IconGallery from './IconGallery.jsx';
@@ -12,6 +12,7 @@ import TableCellSpecimen from './TableCellSpecimen.jsx';
 import FoundationSpecimen from './FoundationSpecimen.jsx';
 import ChartSpecimen from './ChartSpecimen.jsx';
 import Button from '../ui/Button.jsx';
+import { lucideSlots, passwordIcon, paginationItemRender } from './lucideSlots.jsx';
 
 const { ConfigProvider } = Antd;
 
@@ -94,21 +95,31 @@ function DemoRenderer({ name, variant = 0, compact = false }) {
     case 'Dropdown':
     case 'Dropdown Menu':
     case 'Dropdown Menu Item':
-      return <Antd.Dropdown menu={{ items: menuItems }}><Button iconRight={<ArrowRight size={14} style={{ transform: 'rotate(90deg)' }} />}>Actions</Button></Antd.Dropdown>;
+      return <Antd.Dropdown menu={{ items: menuItems }}><Button iconRight={lucideSlots.chevronDown}>Actions</Button></Antd.Dropdown>;
     case 'Dropdown Menu Checkbox Item':
-      return <Antd.Dropdown menu={checkboxMenu}><Button iconRight={<ArrowRight size={14} style={{ transform: 'rotate(90deg)' }} />}>Filters</Button></Antd.Dropdown>;
+      return <Antd.Dropdown menu={checkboxMenu}><Button iconRight={lucideSlots.chevronDown}>Filters</Button></Antd.Dropdown>;
     case 'Dropdown Menu Divider':
     case 'Dropdown Menu Group':
-      return <Antd.Dropdown menu={{ items: menuItems }}><Button iconRight={<ArrowRight size={14} style={{ transform: 'rotate(90deg)' }} />}>Grouped menu</Button></Antd.Dropdown>;
+      return <Antd.Dropdown menu={{ items: menuItems }}><Button iconRight={lucideSlots.chevronDown}>Grouped menu</Button></Antd.Dropdown>;
     case 'Dropdown Menu Radio Group':
     case 'Dropdown Menu Radio Item':
-      return <Antd.Dropdown menu={radioMenu}><Button iconRight={<ArrowRight size={14} style={{ transform: 'rotate(90deg)' }} />}>Status</Button></Antd.Dropdown>;
+      return <Antd.Dropdown menu={radioMenu}><Button iconRight={lucideSlots.chevronDown}>Status</Button></Antd.Dropdown>;
     case 'Dropdown Menu Submenu':
-      return <Antd.Dropdown menu={submenu}><Button iconRight={<ArrowRight size={14} style={{ transform: 'rotate(90deg)' }} />}>More</Button></Antd.Dropdown>;
+      return <Antd.Dropdown menu={submenu}><Button iconRight={lucideSlots.chevronDown}>More</Button></Antd.Dropdown>;
     case 'Menu': return <Antd.Menu mode="horizontal" selectedKeys={['components']} items={compact
       ? [{ key: 'design', label: 'One' }, { key: 'components', label: 'Two' }]
       : [{ key: 'design', label: 'Design' }, { key: 'components', label: 'Components' }, { key: 'resources', label: 'Resources' }]} />;
-    case 'Pagination': return <Antd.Pagination size={compact ? 'small' : 'default'} defaultCurrent={2} total={compact ? 20 : 80} showSizeChanger={!compact} />;
+    case 'Pagination': return (
+      <Antd.Pagination
+        size={compact ? 'small' : 'default'}
+        defaultCurrent={2}
+        total={compact ? 20 : 80}
+        showSizeChanger={!compact}
+        itemRender={paginationItemRender}
+        prevIcon={lucideSlots.chevronLeft}
+        nextIcon={lucideSlots.chevronRight}
+      />
+    );
     case 'Steps': return <Antd.Steps size={compact ? 'small' : 'default'} current={1} items={compact
       ? [{ title: 'One' }, { title: 'Two' }]
       : [{ title: 'Finished' }, { title: 'In progress' }, { title: 'Waiting' }]} />;
@@ -116,26 +127,106 @@ function DemoRenderer({ name, variant = 0, compact = false }) {
     case 'Tab': return <Antd.Tabs size={compact ? 'small' : 'middle'} items={compact
       ? [{ key: '1', label: 'One', children: 'Panel' }, { key: '2', label: 'Two', children: 'Panel' }]
       : [{ key: '1', label: 'Design', children: 'Design guidelines' }, { key: '2', label: 'Development', children: 'Components' }, { key: '3', label: 'Resources', children: 'Tools' }]} />;
-    case 'AutoComplete': return <Antd.AutoComplete style={{ width: 280 }} options={sampleOptions} placeholder="Try typing “N”" />;
-    case 'Cascader': return <Antd.Cascader options={[{ value: 'design', label: 'Design', children: [{ value: 'patterns', label: 'Patterns' }, { value: 'principles', label: 'Principles' }] }]} placeholder="Please select" />;
+    case 'AutoComplete': return (
+      <Antd.AutoComplete
+        style={{ width: 280 }}
+        options={sampleOptions}
+        placeholder="Try typing “N”"
+        allowClear={{ clearIcon: lucideSlots.clear }}
+      />
+    );
+    case 'Cascader': return (
+      <Antd.Cascader
+        options={[{ value: 'design', label: 'Design', children: [{ value: 'patterns', label: 'Patterns' }, { value: 'principles', label: 'Principles' }] }]}
+        placeholder="Please select"
+        suffixIcon={lucideSlots.chevronDown}
+        allowClear={{ clearIcon: lucideSlots.clear }}
+      />
+    );
     case 'Checkbox': return <Antd.Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)}>Remember my preference</Antd.Checkbox>;
     case 'Checkbox Group': return <Antd.Checkbox.Group options={['Claims', 'Coding', 'Review']} defaultValue={['Claims']} />;
-    case 'ColorPicker': return <Antd.Space><Antd.ColorPicker defaultValue="#2D40CB" showText /><Antd.ColorPicker defaultValue="#EA5252" showText /></Antd.Space>;
+    case 'ColorPicker': return <Antd.Space><Antd.ColorPicker defaultValue="#2D48DA" showText /><Antd.ColorPicker defaultValue="#E65D5D" showText /></Antd.Space>;
     case 'Date Picker':
-    case 'DatePicker': return <Antd.DatePicker />;
-    case 'Range Picker': return <Antd.DatePicker.RangePicker />;
-    case 'Display Form Text': return <Antd.Form layout="vertical" style={{ maxWidth: 360 }}><Antd.Form.Item label="Patient"><Antd.Typography.Text>Ada Lovelace</Antd.Typography.Text></Antd.Form.Item><Antd.Form.Item label="Claim ID"><Antd.Typography.Text copyable>CLM-20481</Antd.Typography.Text></Antd.Form.Item></Antd.Form>;
+    case 'DatePicker': return (
+      <Antd.DatePicker
+        suffixIcon={lucideSlots.calendar}
+        allowClear={{ clearIcon: lucideSlots.clear }}
+      />
+    );
+    case 'Range Picker': return (
+      <Antd.DatePicker.RangePicker
+        suffixIcon={lucideSlots.calendar}
+        allowClear={{ clearIcon: lucideSlots.clear }}
+      />
+    );
+    case 'Display Form Text': return (
+      <Antd.Form layout="vertical" style={{ maxWidth: 360 }}>
+        <Antd.Form.Item label="Patient">
+          <Antd.Typography.Text>Ada Lovelace</Antd.Typography.Text>
+        </Antd.Form.Item>
+        <Antd.Form.Item label="Claim ID">
+          <Antd.Typography.Text
+            copyable={{
+              icon: [
+                <Copy key="copy" size={14} aria-hidden="true" />,
+                <CircleCheck key="copied" size={14} aria-hidden="true" />,
+              ],
+              tooltips: ['Copy', 'Copied'],
+            }}
+          >
+            CLM-20481
+          </Antd.Typography.Text>
+        </Antd.Form.Item>
+      </Antd.Form>
+    );
     case 'Filter Item': return <Antd.Space wrap><Antd.Tag.CheckableTag checked={checked} onChange={setChecked}>Open</Antd.Tag.CheckableTag><Antd.Tag.CheckableTag checked>Denied</Antd.Tag.CheckableTag><Antd.Tag>Payer</Antd.Tag></Antd.Space>;
-    case 'Filter Bar & Dropdown Menu': return <Antd.Space wrap><Antd.Select defaultValue="all" style={{ width: 160 }} options={[{ value: 'all', label: 'All statuses' }, { value: 'open', label: 'Open' }]} /><Antd.Dropdown menu={{ items: menuItems }}><Button>More filters</Button></Antd.Dropdown><Antd.Input.Search placeholder="Search claims" style={{ width: 220 }} /></Antd.Space>;
+    case 'Filter Bar & Dropdown Menu': return (
+      <Antd.Space wrap>
+        <Antd.Select
+          defaultValue="all"
+          style={{ width: 160 }}
+          options={[{ value: 'all', label: 'All statuses' }, { value: 'open', label: 'Open' }]}
+          suffixIcon={lucideSlots.chevronDown}
+        />
+        <Antd.Dropdown menu={{ items: menuItems }}><Button>More filters</Button></Antd.Dropdown>
+        <Antd.Input.Search
+          placeholder="Search claims"
+          style={{ width: 220 }}
+          prefix={lucideSlots.search}
+          allowClear={{ clearIcon: lucideSlots.clear }}
+        />
+      </Antd.Space>
+    );
     case 'Footer': return <div className="footer-demo"><span>© Youlify</span><Antd.Space size="large"><a>Privacy</a><a>Terms</a><a>Support</a></Antd.Space></div>;
     case 'Form List':
-    case 'Form List Row & Section': return <Antd.Form layout="vertical" style={{ maxWidth: 420 }}><Antd.Form.Item label="Section"><Antd.Input placeholder="Provider details" /></Antd.Form.Item><Antd.Form.Item label="NPI"><Antd.Input placeholder="1234567890" /></Antd.Form.Item><Antd.Form.Item label="Notes"><Antd.Input.TextArea rows={2} placeholder="Optional notes" /></Antd.Form.Item></Antd.Form>;
-    case 'Log In': return <Antd.Card style={{ width: 320 }} title="Log in"><Antd.Form layout="vertical"><Antd.Form.Item label="Email" required><Antd.Input placeholder="you@clinic.com" /></Antd.Form.Item><Antd.Form.Item label="Password" required><Antd.Input.Password /></Antd.Form.Item><Button type="primary" block>Continue</Button></Antd.Form></Antd.Card>;
+    case 'Form List Row & Section': return <Antd.Form layout="vertical" style={{ maxWidth: 420 }}><Antd.Form.Item label="Section"><Antd.Input placeholder="Provider details" allowClear={{ clearIcon: lucideSlots.clear }} /></Antd.Form.Item><Antd.Form.Item label="NPI"><Antd.Input placeholder="1234567890" allowClear={{ clearIcon: lucideSlots.clear }} /></Antd.Form.Item><Antd.Form.Item label="Notes"><Antd.Input.TextArea rows={2} placeholder="Optional notes" /></Antd.Form.Item></Antd.Form>;
+    case 'Log In': return (
+      <Antd.Card style={{ width: 320 }} title="Log in">
+        <Antd.Form layout="vertical">
+          <Antd.Form.Item label="Email" required><Antd.Input placeholder="you@clinic.com" allowClear={{ clearIcon: lucideSlots.clear }} /></Antd.Form.Item>
+          <Antd.Form.Item label="Password" required><Antd.Input.Password iconRender={passwordIcon} placeholder="Password" /></Antd.Form.Item>
+          <Button type="primary" block>Continue</Button>
+        </Antd.Form>
+      </Antd.Card>
+    );
     case 'Navigation':
     case 'Navigation Profile': return <Antd.Space style={{ width: '100%', justifyContent: 'space-between' }}><Antd.Menu mode="horizontal" selectedKeys={['claims']} items={[{ key: 'claims', label: 'Claims' }, { key: 'era', label: 'ERA' }, { key: 'settings', label: 'Settings' }]} style={{ flex: 1, minWidth: 0, border: 0 }} /><Antd.Space><Antd.Avatar size="small">TS</Antd.Avatar><span>Tingyu Su</span></Antd.Space></Antd.Space>;
     case 'Page Header': return <div className="page-header-demo"><div><Antd.Typography.Title level={3} style={{ margin: 0 }}>Claims workbench</Antd.Typography.Title><Antd.Typography.Text type="secondary">Review and resolve open claims</Antd.Typography.Text></div><Antd.Space><Button>Export</Button><Button type="primary">New claim</Button></Antd.Space></div>;
     case 'Popup Window':
-    case 'Modal': return <><Button type="primary" onClick={() => setOpen(true)}>Open popup</Button><Antd.Modal title="Confirm changes" open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}><p>Your updates will be available to everyone in this workspace.</p></Antd.Modal></>;
+    case 'Modal': return (
+      <>
+        <Button type="primary" onClick={() => setOpen(true)}>Open popup</Button>
+        <Antd.Modal
+          title="Confirm changes"
+          open={open}
+          onOk={() => setOpen(false)}
+          onCancel={() => setOpen(false)}
+          closeIcon={lucideSlots.close}
+        >
+          <p>Your updates will be available to everyone in this workspace.</p>
+        </Antd.Modal>
+      </>
+    );
     case 'Quick Info':
     case 'Popover': return <Antd.Popover title="Quick info" content="A short explanation next to the trigger."><Button>Hover me</Button></Antd.Popover>;
     case 'Radio Selection':
@@ -148,31 +239,85 @@ function DemoRenderer({ name, variant = 0, compact = false }) {
     case 'Upload & Download':
     case 'Upload': return <Antd.Space orientation="vertical" style={{ width: '100%' }}><Antd.Upload.Dragger><p className="ant-upload-drag-icon"><Upload /></p><p>Click or drag file to this area to upload</p></Antd.Upload.Dragger><Button icon={<Download />}>Download template</Button></Antd.Space>;
     case 'Warning Banner':
-    case 'Alert': return <Antd.Space orientation="vertical" style={{ width: '100%' }}><Antd.Alert title="Review completed" type="success" showIcon /><Antd.Alert title="Warning" description="Additional claim information is required before submission." type="warning" showIcon closable /></Antd.Space>;
-    case 'Conversational AI': return <div className="chat-demo"><div className="chat-bubble assistant">How can I help with this claim?</div><div className="chat-bubble user">Summarize denial reasons.</div><Antd.Input.Search placeholder="Ask the assistant" enterButton="Send" /></div>;
+    case 'Alert': return (
+      <Antd.Space orientation="vertical" style={{ width: '100%' }}>
+        <Antd.Alert title="Review completed" type="success" showIcon icon={lucideSlots.success} />
+        <Antd.Alert
+          title="Warning"
+          description="Additional claim information is required before submission."
+          type="warning"
+          showIcon
+          icon={lucideSlots.warning}
+          closable
+          closeIcon={lucideSlots.closeSm}
+        />
+      </Antd.Space>
+    );
+    case 'Conversational AI': return (
+      <div className="chat-demo">
+        <div className="chat-bubble assistant">How can I help with this claim?</div>
+        <div className="chat-bubble user">Summarize denial reasons.</div>
+        <Antd.Input.Search
+          placeholder="Ask the assistant"
+          enterButton="Send"
+          prefix={lucideSlots.search}
+          allowClear={{ clearIcon: lucideSlots.clear }}
+        />
+      </div>
+    );
     case 'Chip':
-    case 'Tag': return <Antd.Space wrap><Antd.Tag color="blue">Design</Antd.Tag><Antd.Tag color="purple">Research</Antd.Tag><Antd.Tag color="cyan">Development</Antd.Tag><Antd.Tag closable>Closable</Antd.Tag><Antd.Tag.CheckableTag checked={checked} onChange={setChecked}>Checkable</Antd.Tag.CheckableTag></Antd.Space>;
+    case 'Tag': return (
+      <Antd.Space wrap>
+        <Antd.Tag color="blue">Design</Antd.Tag>
+        <Antd.Tag color="purple">Research</Antd.Tag>
+        <Antd.Tag color="cyan">Development</Antd.Tag>
+        <Antd.Tag closable closeIcon={lucideSlots.closeSm}>Closable</Antd.Tag>
+        <Antd.Tag.CheckableTag checked={checked} onChange={setChecked}>Checkable</Antd.Tag.CheckableTag>
+      </Antd.Space>
+    );
     case 'Progress Indicator':
     case 'Progress': return <Antd.Space orientation="vertical" style={{ width: '100%' }}><Antd.Progress percent={68} /><Antd.Progress percent={100} status="success" /><Antd.Progress type="circle" percent={72} size={90} /></Antd.Space>;
     case 'Data Visualization Axis': return <div className="axis-demo" aria-label="Chart axis"><div className="axis-line" /><Antd.Space style={{ width: '100%', justifyContent: 'space-between' }}><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></Antd.Space></div>;
-    case 'Form': return <Antd.Form layout="vertical" style={{ maxWidth: 420 }}><Antd.Form.Item label="Project name" required><Antd.Input placeholder="Design system" /></Antd.Form.Item><Antd.Form.Item label="Description"><Antd.Input.TextArea rows={2} /></Antd.Form.Item><Button type="primary">Create project</Button></Antd.Form>;
-    case 'Input': return <Antd.Input prefix={<User />} placeholder="Patient or claim ID" />;
+    case 'Form': return <Antd.Form layout="vertical" style={{ maxWidth: 420 }}><Antd.Form.Item label="Project name" required><Antd.Input placeholder="Design system" allowClear={{ clearIcon: lucideSlots.clear }} /></Antd.Form.Item><Antd.Form.Item label="Description"><Antd.Input.TextArea rows={2} /></Antd.Form.Item><Button type="primary">Create project</Button></Antd.Form>;
+    case 'Input': return <Antd.Input prefix={<User size={14} />} placeholder="Patient or claim ID" allowClear={{ clearIcon: lucideSlots.clear }} />;
     case 'Input Number':
     case 'InputNumber': return <Antd.Space><Antd.InputNumber min={0} max={100} value={value} onChange={(n) => setValue(n || 0)} suffix="%" /><Antd.InputNumber defaultValue={24} prefix="$" /></Antd.Space>;
-    case 'Password': return <Antd.Input.Password placeholder="Password" />;
-    case 'Search': return <Antd.Input.Search placeholder="Search documentation" enterButton />;
+    case 'Password': return <Antd.Input.Password placeholder="Password" iconRender={passwordIcon} />;
+    case 'Search': return (
+      <Antd.Input.Search
+        placeholder="Search documentation"
+        enterButton
+        prefix={lucideSlots.search}
+        allowClear={{ clearIcon: lucideSlots.clear }}
+      />
+    );
     case 'TextArea': return <Antd.Input.TextArea rows={3} placeholder="Add a note" />;
     case 'Slider': return <div style={{ width: '100%' }}><Antd.Slider value={value} onChange={setValue} /><Antd.Slider range defaultValue={[24, 72]} /></div>;
-    case 'Avatar': return <Antd.Avatar size={48} icon={<User />} />;
+    case 'Avatar': return <Antd.Avatar size={48} icon={<User size={20} />} />;
     case 'Avatar Group': return <Antd.Avatar.Group><Antd.Avatar style={{ background: '#2D40CB' }}>Z</Antd.Avatar><Antd.Avatar style={{ background: '#7F40C9' }}>D</Antd.Avatar><Antd.Avatar style={{ background: '#0AA5A8' }}>S</Antd.Avatar></Antd.Avatar.Group>;
-    case 'Badge': return <Antd.Space size="large"><Antd.Badge count={5}><Antd.Avatar shape="square" icon={<Bell />} /></Antd.Badge><Antd.Badge status="success" text="Available" /><Antd.Badge.Ribbon text="New"><Antd.Card size="small">Eftson UI</Antd.Card></Antd.Badge.Ribbon></Antd.Space>;
+    case 'Badge': return <Antd.Space size="large"><Antd.Badge count={5}><Antd.Avatar shape="square" icon={<Bell size={16} />} /></Antd.Badge><Antd.Badge status="success" text="Available" /><Antd.Badge.Ribbon text="New"><Antd.Card size="small">Eftson UI</Antd.Card></Antd.Badge.Ribbon></Antd.Space>;
     case 'Calendar': return <Antd.Calendar fullscreen={false} />;
-    case 'Card': return <Antd.Card title="Design system" extra={<a>More</a>} style={{ width: 320 }} actions={[<Settings key="settings" />, <SquarePen key="edit" />]}><Antd.Card.Meta avatar={<Antd.Avatar>E</Antd.Avatar>} title="Eftson Design" description="A system for healthcare products" /></Antd.Card>;
+    case 'Card': return <Antd.Card title="Design system" extra={<a>More</a>} style={{ width: 320 }} actions={[<Settings key="settings" size={16} />, <SquarePen key="edit" size={16} />]}><Antd.Card.Meta avatar={<Antd.Avatar>E</Antd.Avatar>} title="Eftson Design" description="A system for healthcare products" /></Antd.Card>;
     case 'Clickable Card': return <Antd.Card hoverable style={{ width: 280 }} cover={<div style={{ height: 100, background: '#F3F7FF' }} />}><Antd.Card.Meta title="Open claim" description="Navigate into a workflow from the card." /></Antd.Card>;
     case 'Carousel': return <Antd.Carousel autoplay><div><div className="carousel-slide">Natural</div></div><div><div className="carousel-slide alt">Certain</div></div><div><div className="carousel-slide third">Meaningful</div></div></Antd.Carousel>;
-    case 'Collapse': return <Antd.Collapse defaultActiveKey={['1']} items={[{ key: '1', label: 'What is Eftson Design?', children: <p>A healthcare product design language and React UI library.</p> }, { key: '2', label: 'How do I use it?', children: <p>Compose components into clear product experiences.</p> }]} />;
+    case 'Collapse': return (
+      <Antd.Collapse
+        defaultActiveKey={['1']}
+        expandIcon={({ isActive }) => (
+          <ChevronDown size={14} style={{ transform: isActive ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }} aria-hidden="true" />
+        )}
+        items={[
+          { key: '1', label: 'What is Eftson Design?', children: <p>A healthcare product design language and React UI library.</p> },
+          { key: '2', label: 'How do I use it?', children: <p>Compose components into clear product experiences.</p> },
+        ]}
+      />
+    );
     case 'Descriptions': return <Antd.Descriptions title="Project Info" bordered column={2} items={[{ key: '1', label: 'Owner', children: 'Design Systems' }, { key: '2', label: 'Status', children: <Antd.Badge status="processing" text="Active" /> }, { key: '3', label: 'Version', children: '1.0.0' }, { key: '4', label: 'Product', children: 'Eftson' }]} />;
-    case 'Empty': return <Antd.Empty description="No components found"><Button type="primary">Create one</Button></Antd.Empty>;
+    case 'Empty': return (
+      <Antd.Empty image={lucideSlots.empty} description="No components found">
+        <Button type="primary">Create one</Button>
+      </Antd.Empty>
+    );
     case 'Image': return <Antd.Image width={220} src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='400' viewBox='0 0 640 400'%3E%3Cdefs%3E%3ClinearGradient id='g' x2='1' y2='1'%3E%3Cstop stop-color='%231677ff'/%3E%3Cstop offset='1' stop-color='%23722ed1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='400' rx='24' fill='url(%23g)'/%3E%3Ccircle cx='465' cy='115' r='55' fill='%23fff' fill-opacity='.3'/%3E%3Cpath d='M0 330 175 170l115 115 85-80 265 195H0Z' fill='%23fff' fill-opacity='.22'/%3E%3C/svg%3E" />;
     case 'List':
     case 'List Item': return <div className="legacy-list">{['Design values', 'Global styles', 'Component patterns'].map((item, i) => <div className="legacy-list-item" key={item}><Antd.Avatar style={{ background: ['#2D40CB', '#7F40C9', '#0AA5A8'][i] }}>{i + 1}</Antd.Avatar><span><strong>{item}</strong><small>Guidance for clear, connected healthcare experiences.</small></span><a>Open</a></div>)}</div>;
@@ -219,7 +364,19 @@ function DemoRenderer({ name, variant = 0, compact = false }) {
     }
     case 'Data Grid Cell':
       return <TableCellSpecimen compact={compact} />;
-    case 'Message': return <>{contextHolder}<Antd.Space><Button onClick={() => messageApi.success('Changes saved')}>Success</Button><Button onClick={() => messageApi.loading('Saving…', 1)}>Loading</Button></Antd.Space></>;
+    case 'Message': return (
+      <>
+        {contextHolder}
+        <div className="chat-demo" aria-label="Message blurbs">
+          <div className="message-blurb assistant">Claim CLM-20481 is ready for review.</div>
+          <div className="message-blurb user">Thanks — I will assign it next.</div>
+        </div>
+        <Antd.Space style={{ marginTop: 12 }}>
+          <Button onClick={() => messageApi.success('Changes saved')}>Success toast</Button>
+          <Button onClick={() => messageApi.loading('Saving…', 1)}>Loading toast</Button>
+        </Antd.Space>
+      </>
+    );
     default: return (
       <Antd.Card size="small" style={{ maxWidth: 420 }}>
         <Antd.Typography.Text strong>{name}</Antd.Typography.Text>

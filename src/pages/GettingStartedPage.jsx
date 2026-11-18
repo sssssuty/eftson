@@ -6,11 +6,12 @@ import Button from '../components/ui/Button.jsx';
 
 const aiPrompt = `Set up Eftson in this project.
 
-Install @eftson/ui and apply tokens:
-- colorPrimary #2D40CB
-- borderRadius 8
-- controlHeight 40
+Install @eftson/ui and apply foundation tokens:
+- colorPrimary #2D48DA (Indigo-default)
+- borderRadius 4 (Corner-4 default)
+- controlHeight 40 (Spacing-40)
 - fontFamily Elza
+- Corner-2 for medium/small buttons; Corner-8 for Message blurbs only
 
 Add a primary Button and open #/components/overview.`;
 
@@ -49,8 +50,8 @@ export default function GettingStartedPage() {
 
 <ConfigProvider theme={{
   token: {
-    colorPrimary: '#2D40CB',
-    borderRadius: 8,
+    colorPrimary: '#2D48DA',
+    borderRadius: 4,
     controlHeight: 40,
     fontFamily: 'Elza, sans-serif',
   },
@@ -62,7 +63,12 @@ export default function GettingStartedPage() {
       <section id="tokens">
         <h2>Tokens</h2>
         <div className="token-grid">
-          {[['colorPrimary', '#2D40CB'], ['borderRadius', '8px'], ['controlHeight', '40px'], ['fontFamily', 'Elza']].map(([k, v]) => (
+          {[
+            ['Indigo-default', '#2D48DA'],
+            ['Corner-4', '4px'],
+            ['Spacing-40', '40px'],
+            ['fontFamily', 'Elza'],
+          ].map(([k, v]) => (
             <div key={k}><code>{k}</code><strong>{v}</strong></div>
           ))}
         </div>
