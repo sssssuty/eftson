@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2D40CB" />
+    <meta name="description" content="Eftson Design System — local design guidelines and interactive component library." />
+    <title>Eftson Design System</title>
+    <script id="offline-entry-redirect">
+      // Chrome blocks Vite's module entry when this source file is opened over
+      // file://. Send local-file visitors to the self-contained offline build;
+      // HTTP development continues through /src/main.jsx below.
+      if (window.location.protocol === 'file:') {
+        const offlinePage = new URL('./Eftson Design System.html', window.location.href);
+        offlinePage.hash = window.location.hash;
+        window.location.replace(offlinePage.href);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <p id="offline-entry-fallback" style="padding:24px;font:16px/1.5 sans-serif">
+        Opening the Eftson Design System…
+        <a href="./Eftson Design System.html">Open the offline page</a>
+      </p>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
